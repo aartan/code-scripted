@@ -1,0 +1,38 @@
+import Link from "next/link";
+
+type PaginationProps = {
+  currentPage: number;
+  totalPages: number;
+};
+
+export function Pagination({ currentPage, totalPages }: PaginationProps) {
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  return (
+    <nav aria-label="Pagination">
+      <ul className="flex justify-center space-x-4">
+        {currentPage > 1 && (
+          <li>
+            <Link href={`/?page=${currentPage - 1}`} className="text-blue-500 hover:underline">
+              Previous
+            </Link>
+          </li>
+        )}
+        {pageNumbers.map((number) => (
+          <li key={number}>
+            <Link href={`/?page=${number}`} className={`${number === currentPage ? "font-bold text-blue-500" : "text-gray-500 hover:underline"}`}>
+              {number}
+            </Link>
+          </li>
+        ))}
+        {currentPage < totalPages && (
+          <li>
+            <Link href={`/?page=${currentPage + 1}`} className="text-blue-500 hover:underline">
+              Next
+            </Link>
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
+}

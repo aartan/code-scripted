@@ -2,7 +2,7 @@
 title: "The Power of Dynamic Routing in Modern Web Development"
 excerpt: "Dynamic routing allows for the creation of dynamic URLs and content generation based on user interaction, enhancing the flexibility and efficiency of modern web applications. Learn how to leverage dynamic routing with static generation for optimized performance and user experience."
 coverImage: "/assets/blog/dynamic-routing/cover.jpg"
-date: "2024-08-24T05:35:07.322Z"
+date: "2024-08-25T05:35:07.322Z"
 author:
   name: Abdifatah M. Artan
   picture: "/assets/blog/authors/me.jpeg"

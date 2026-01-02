@@ -24,7 +24,7 @@ export default function AboutPage() {
             day-to-day work.
           </p>
           <div className="flex flex-col md:flex-row items-center mb-16 mt-16">
-            <div className="w-full md:w-1/3 mb-12 md:mb-0 md:mr-8">
+            <div className="w-full md:w-1/3 mb-6 md:mb-0 md:mr-8">
               <Image
                 src="/assets/blog/authors/me.jpeg"
                 alt="Author Image"

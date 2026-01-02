@@ -2,7 +2,7 @@
 title: "Learn How to Pre-render Pages Using Static Generation with Next.js"
 excerpt: "Discover how static generation with Next.js can drastically improve the performance and SEO of your web applications by pre-rendering pages at build time."
 coverImage: "/assets/blog/hello-world/cover.jpg"
-date: "2024-08-24T05:35:07.322Z"
+date: "2024-04-26T05:35:07.322Z"
 author:
   name: Abdifatah M. Artan
   picture: "/assets/blog/authors/me.jpeg"

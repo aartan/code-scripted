@@ -2,7 +2,7 @@
 title: "Preview Mode for Static Generation"
 excerpt: "Learn how to use Preview Mode in Next.js to enable live previews of your content before it's published, combining the benefits of static generation with real-time content editing."
 coverImage: "/assets/blog/preview/cover.jpg"
-date: "2024-08-24T05:35:07.322Z"
+date: "2024-05-18T05:35:07.322Z"
 author:
   name: Abdifatah M. Artan
   picture: "/assets/blog/authors/me.jpeg"

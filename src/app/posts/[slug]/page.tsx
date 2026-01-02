@@ -7,9 +7,16 @@ import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
+import type { Post } from "@/interfaces/post"; // Use type-only import
+
+type Params = {
+  params: {
+    slug: string;
+  };
+};
 
 export default async function Post({ params }: Params) {
-  const post = getPostBySlug(params.slug);
+  const post: Post | null = getPostBySlug(params.slug);
 
   if (!post) {
     return notFound();
@@ -34,14 +41,8 @@ export default async function Post({ params }: Params) {
   );
 }
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
-
 export function generateMetadata({ params }: Params): Metadata {
-  const post = getPostBySlug(params.slug);
+  const post: Post | null = getPostBySlug(params.slug);
 
   if (!post) {
     return notFound();
@@ -58,9 +59,9 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const { posts } = getAllPosts(); // Assuming getAllPosts() returns an object with a 'posts' array.
 
-  return posts.map((post) => ({
+  return posts.map((post: Post) => ({
     slug: post.slug,
   }));
 }

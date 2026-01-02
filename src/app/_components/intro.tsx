@@ -5,7 +5,7 @@ export function Intro() {
         CodeScripted.
       </h1>
       <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        Exploring the latest in software development and technology, one script at a time.
+        Exploring the latest in software development and technology
       </h4>
     </section>
   );
