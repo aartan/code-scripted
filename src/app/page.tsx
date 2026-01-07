@@ -37,8 +37,10 @@ export default function Index({ searchParams }: { searchParams: { page?: string,
             excerpt={heroPost.excerpt}
           />
         )}
-        {morePosts.length > 0 && (
+        {morePosts.length > 0 ? (
           <MoreStories posts={morePosts} showHeading={page === 1 && !searchQuery} />
+        ) : (
+          <p>No results found.</p>
         )}
         <Pagination currentPage={page} totalPages={totalPages} />
       </Container>

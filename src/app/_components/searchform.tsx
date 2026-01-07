@@ -1,7 +1,7 @@
 "use client"; // Ensure this is at the top of the file
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Ensure you are importing from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import styles from './SearchForm.module.css';
 
 export function SearchForm({ searchQuery }: { searchQuery: string }) {

@@ -1,54 +1,74 @@
-/* Search Form Container */
+/* Search Form */
 .search-form {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
     align-items: center;
-    justify-content: center; /* Center the form horizontally */
-    margin-bottom: 20px; /* Add space below the form */
+    justify-content: center;
+    gap: 8px; /* Ensure there’s consistent spacing between elements */
+    margin-bottom: 20px;
   }
   
   /* Search Input */
   .search-input {
-    height: 50px; /* Increase height */
-    padding: 0 15px; /* Adjust padding */
-    border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+    height: 50px;
+    padding: 0 15px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    font-size: 18px; /* Increase font size */
-    flex: 1; /* Allow the input to grow */
-    min-width: 200px; /* Ensures the input doesn't get too small */
+    font-size: 18px;
+    flex: 1 1 auto;
+    min-width: 0;
   }
   
   /* Search Button */
   .search-button {
-    height: 50px; /* Match input height */
-    padding: 0 30px; /* Increase padding for a larger button */
-    background-color: black; /* Black button */
+    height: 50px;
+    padding: 0 20px;
+    background-color: black;
     color: white;
-    border-radius: 0 5px 5px 0; /* Rounded corners on the right */
-    border: none; /* Remove default border */
+    border-radius: 5px;
+    border: none;
     cursor: pointer;
-    font-size: 18px; /* Increase font size */
-    font-weight: bold; /* Bold text */
+    font-size: 18px;
+    font-weight: bold;
+    flex-shrink: 0;
   }
   
   .search-button:hover {
-    background-color: #333; /* Darker on hover */
+    background-color: #333;
   }
   
   /* Clear Button */
   .clear-button {
-    height: 50px; /* Match input and search button height */
-    padding: 0 30px; /* Increase padding */
-    margin-left: 10px; /* Add space between buttons */
-    background-color: red; /* Red clear button */
+    height: 50px;
+    padding: 0 20px;
+    background-color: red;
     color: white;
-    border-radius: 5px; /* Rounded corners */
-    border: none; /* Remove default border */
+    border-radius: 5px;
+    border: none;
     cursor: pointer;
-    font-size: 18px; /* Increase font size */
-    font-weight: bold; /* Bold text */
+    font-size: 18px;
+    font-weight: bold;
+    flex-shrink: 0;
   }
   
   .clear-button:hover {
-    background-color: darkred; /* Darker on hover */
+    background-color: darkred;
+  }
+  
+  /* Media Queries for Mobile */
+  @media (max-width: 768px) {
+    .search-form {
+      flex-direction: column; /* Stack elements vertically on mobile */
+    }
+  
+    .search-input {
+      width: 100%; /* Input takes full width */
+    }
+  
+    .search-button, .clear-button {
+      width: 100%; /* Buttons take full width */
+      margin-top: 10px; /* Add space between buttons */
+      border-radius: 5px; /* Keep consistent rounding */
+    }
   }
   
