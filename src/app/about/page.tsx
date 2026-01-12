@@ -36,7 +36,7 @@ export default function AboutPage() {
             <div className="w-full md:w-2/3">
               <p className="text-lg leading-relaxed mb-6">
                 My name is Abdifatah, and I’m a software engineer who enjoys solving problems using code and building things that make a difference. 
-                Throughout my career, I've had the privilege of working with outstanding teams and these experiences have allowed me to sharpen my expertise in web development.
+                Throughout my career, I've had the privilege of working with some outstanding teams and these experiences have allowed me to sharpen my expertise in web development.
               </p>
               <p className="text-lg leading-relaxed mb-6">
                 I've spent a lot of time in the trenches, tackling complex problems and crafting solutions that make a real difference. Through 
