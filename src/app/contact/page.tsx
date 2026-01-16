@@ -23,6 +23,12 @@ export default function Contact() {
     e.preventDefault();
     // Handle form submission logic (e.g., send data to an API)
     setShowSuccess(true);
+    // Clear the form by resetting formData to its initial state
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
   };
 
   return (
@@ -30,8 +36,8 @@ export default function Contact() {
       <Container>
         <Header />
         <div className="py-16 flex justify-center">
-          <div className="w-full max-w-md">
-            <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
+          <div className="w-full max-w-lg">
+            <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -88,6 +94,7 @@ export default function Contact() {
             </form>
           </div>
         </div>
+        <div className="py-16"></div>
       </Container>
 
       {/* Success Alert */}
