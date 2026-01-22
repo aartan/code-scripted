@@ -40,7 +40,7 @@ export default function Contact() {
             <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="name" className="block text-sm font-medium">
                   Name
                 </label>
                 <input
@@ -50,12 +50,12 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+                  className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block text-sm font-medium">
                   Email
                 </label>
                 <input
@@ -65,12 +65,12 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+                  className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="message" className="block text-sm font-medium">
                   Message
                 </label>
                 <textarea
@@ -79,14 +79,14 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+                  className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
                 />
               </div>
 
               <div>
                 <button
                   type="submit"
-                  className="w-full bg-black text-white py-3 px-4 rounded-md hover:bg-white hover:text-black border border-black transition-colors duration-200"
+                  className="text-black w-full bg-black text-white py-3 px-4 rounded-md hover:bg-white hover:text-black border border-black transition-colors duration-200"
                 >
                   Send Message
                 </button>

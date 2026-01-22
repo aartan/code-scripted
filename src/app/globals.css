@@ -1,3 +1,104 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Default Card styling (light theme) */
+.card {
+  background-color: #ffffff; /* White background */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Dark theme card styling */
+[data-mode="dark"] .card {
+  background-color: rgb(13, 17, 23); /* Dark background */
+  color: #94a3b8; /* Text color */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+}
+
+/* Hover effect for cards in dark mode */
+[data-mode="dark"] .card:hover {
+  transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
+    background-color: rgb(13, 17, 23);
+    color: #94a3b8;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
+}
+
+/* Hover effect for cards in light mode */
+[data-mode="light"] .card:hover {
+  transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
+  background-color: #f3f4f6; /* Light gray background on hover */
+  color: #1f2937; /* Darker text color on hover */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+/* Markdown styling for light mode */
+.markdown {
+  background-color: #f8f9fa; /* Light gray background */
+  color: #212529; /* Dark text color */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+  padding: 1.5rem; /* Padding to give content some space */
+  border-radius: 0.75rem; /* Rounded corners */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Headings in markdown content */
+.markdown h2, .markdown h3 {
+  font-weight: 700;
+  color: #343a40; /* Darker heading color */
+}
+
+/* Markdown styling for dark mode */
+[data-mode="dark"] .markdown {
+  background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white background */
+  color: #e2e8f0; /* Light text color */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Light border */
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5); /* Inner shadow */
+}
+
+/* Headings in markdown content for dark mode */
+[data-mode="dark"] .markdown h2, 
+[data-mode="dark"] .markdown h3 {
+  font-weight: 700;
+  color: #cbd5e1; /* Light heading color */
+}
+
+.post-preview-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background-color: #ffffff; /* White background */
+  border-radius: 0.75rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+[data-mode="dark"] .post-preview-card {
+  background-color: rgb(13, 17, 23); /* Dark background */
+  color: #94a3b8; /* Text color */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+}
+
+[data-mode="dark"] .post-preview-card:hover,
+[data-mode="light"] .post-preview-card:hover {
+  transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+[data-mode="light"] .post-preview-card:hover {
+  background-color: #f3f4f6; /* Light gray background on hover */
+  color: #1f2937; /* Darker text color on hover */
+}
+
+/* For truncating the excerpt based on title length */
+.post-preview-excerpt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+}

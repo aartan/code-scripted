@@ -14,7 +14,8 @@
   transition: all 0.3s ease-in-out 0s !important;
 }
 
-[data-mode="system"] .switch::after {
+.switch::after {
+  content: "";
   position: absolute;
   height: 100%;
   width: 100%;
@@ -25,16 +26,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  content: "A";
+  color: currentColor;
+  background-color: transparent;
+  border-radius: 50%;
 }
 
-[data-mode="light"] .switch {
-  box-shadow: 0 0 50px 10px yellow;
-  background-color: yellow;
+/* When in system mode, show the "A" for Auto */
+.switch[data-mode="system"]::after {
+  content: "A";
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Light mode */
+.switch[data-mode="light"] {
+  box-shadow: 0 0 20px 5px rgba(255, 193, 7, 0.7);
+  background-color: #ffd700;
   border: 1px solid orangered;
 }
 
-[data-mode="dark"] .switch {
+/* Dark mode */
+.switch[data-mode="dark"] {
   box-shadow: calc(var(--size) / 4) calc(var(--size) / -4) calc(var(--size) / 8)
     inset #fff;
   border: none;

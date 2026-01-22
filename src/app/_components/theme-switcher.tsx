@@ -1,23 +1,18 @@
 "use client";
 
-import styles from "./switch.module.css";
 import { memo, useEffect, useState } from "react";
-
-declare global {
-  var updateDOM: () => void;
-}
+import styles from "./switch.module.css";
 
 type ColorSchemePreference = "light" | "dark" | "system";
 
 const STORAGE_KEY = "codescripted-key";
 const modes: ColorSchemePreference[] = ["light", "dark", "system"];
 
-/** to reuse updateDOM function defined inside injected script */
+declare global {
+  var updateDOM: () => void;
+}
 
-/** function to be injected in script tag for avoiding FOUC (Flash of Unstyled Content) */
 export const NoFOUCScript = (storageKey: string) => {
-  const [LIGHT, DARK, SYSTEM] = ["light", "dark", "system"];
-  
   const scriptContent = `
     (() => {
       const [LIGHT, DARK, SYSTEM] = ["light", "dark", "system"];
@@ -34,59 +29,62 @@ export const NoFOUCScript = (storageKey: string) => {
       const media = matchMedia(mediaQuery);
       window.updateDOM = () => {
         const restoreTransitions = modifyTransition();
-        const mode = localStorage.getItem("${storageKey}") ?? LIGHT;
+        const mode = localStorage.getItem("${storageKey}") ?? SYSTEM;
         const systemMode = media.matches ? DARK : LIGHT;
         const resolvedMode = mode === SYSTEM ? systemMode : mode;
         const classList = document.documentElement.classList;
-        if (resolvedMode === DARK) classList.add(DARK);
-        else classList.remove(DARK);
-        document.documentElement.setAttribute("data-mode", mode);
+
+        if (resolvedMode === DARK) {
+          classList.add(DARK);
+          classList.remove(LIGHT);
+          document.documentElement.setAttribute("data-mode", "dark");
+        } else {
+          classList.add(LIGHT);
+          classList.remove(DARK);
+          document.documentElement.setAttribute("data-mode", "light");
+        }
+
         restoreTransitions();
       };
-      window.updateDOM();
+      window.updateDOM(); // Immediately invoke updateDOM to set the initial theme
       media.addEventListener("change", window.updateDOM);
     })();
   `;
   return scriptContent;
 };
 
-
-let updateDOM: () => void;
-
-/**
- * Switch button to quickly toggle user preference.
- */
 const Switch = () => {
-  const [mode, setMode] = useState<ColorSchemePreference>(
-    () =>
-      ((typeof localStorage !== "undefined" &&
-        localStorage.getItem(STORAGE_KEY)) ??
-        "light") as ColorSchemePreference, // Default to LIGHT mode
-  );
+  const [mode, setMode] = useState<ColorSchemePreference | null>(null); // Start with null to delay rendering
 
   useEffect(() => {
-    // store global functions to local variables to avoid any interference
-    updateDOM = window.updateDOM;
-    /** Sync the tabs */
-    addEventListener("storage", (e: StorageEvent): void => {
-      e.key === STORAGE_KEY && setMode(e.newValue as ColorSchemePreference);
-    });
+    const storedMode = localStorage.getItem(STORAGE_KEY) as ColorSchemePreference;
+    if (storedMode) {
+      setMode(storedMode);
+    } else {
+      setMode("light");
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, mode);
-    updateDOM();
+    if (mode && typeof window.updateDOM === "function") { // Ensure updateDOM is defined and callable
+      localStorage.setItem(STORAGE_KEY, mode);
+      window.updateDOM();
+    }
   }, [mode]);
 
-  /** toggle mode */
   const handleModeSwitch = () => {
-    const index = modes.indexOf(mode);
-    setMode(modes[(index + 1) % modes.length]);
+    const index = modes.indexOf(mode as ColorSchemePreference);
+    const newMode = modes[(index + 1) % modes.length];
+    setMode(newMode);
   };
+
+  if (mode === null) return null; // Do not render the button until mode is set
+
   return (
     <button
       suppressHydrationWarning
       className={styles.switch}
+      data-mode={mode}  // Ensure the mode is applied to the button for styling
       onClick={handleModeSwitch}
     />
   );
@@ -96,7 +94,7 @@ const Script = memo(() => {
   useEffect(() => {
     const script = document.createElement("script");
     script.textContent = NoFOUCScript(STORAGE_KEY);
-    document.head.appendChild(script);
+    document.head.prepend(script); // Prepend to the head to run it as early as possible
 
     return () => {
       document.head.removeChild(script);
@@ -107,7 +105,7 @@ const Script = memo(() => {
 });
 
 /**
- * This component wich applies classes and transitions.
+ * This component which applies classes and transitions.
  */
 export const ThemeSwitcher = () => {
   return (

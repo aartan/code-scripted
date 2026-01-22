@@ -18,7 +18,7 @@ export default function Index({ searchParams }: { searchParams: { page?: string,
     searchQuery,
   });
 
-  const totalPages = Math.ceil((totalPosts - 1) / 6);
+  const totalPages = Math.ceil((totalPosts - 1) / 9);
 
   const heroPost = page === 1 && !searchQuery && posts.length > 0 ? posts[0] : null;
   const morePosts = page === 1 && !searchQuery ? posts.slice(1) : posts;

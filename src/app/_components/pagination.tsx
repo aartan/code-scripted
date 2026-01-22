@@ -9,7 +9,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <nav aria-label="Pagination">
+    <nav aria-label="Pagination" className="mb-6">
       <ul className="flex justify-center space-x-4">
         {currentPage > 1 && (
           <li>

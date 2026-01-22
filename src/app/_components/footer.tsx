@@ -11,25 +11,25 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
             <a
               href="/about"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
+              className="rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
             >
               About CodeScripted
             </a>
             <a
               href="/contact"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
+              className="rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
             >
               Get in Touch
             </a>
             <a
               href="https://twitter.com/your-profile"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
+              className="rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
             >
               Follow on Twitter
             </a>
             <a
               href="https://www.linkedin.com/in/abdifatah-artan"
-              className="mx-3 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
+              className="rounded-md mx-3 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
             >
               Connect on LinkedIn
             </a>

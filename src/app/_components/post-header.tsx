@@ -19,7 +19,9 @@ export function PostHeader({ title, coverImage, date }: Props) {
       <div className="hidden md:block md:mb-12"></div>
       <div className="mb-8 md:mb-16 sm:mx-0 flex justify-center">
         <div className="max-w-full md:max-w-4xl">
-          <CoverImage title={title} src={coverImage} />
+          <div className="shadow-lg rounded-lg overflow-hidden">
+            <CoverImage title={title} src={coverImage} className="object-cover" />
+          </div>
         </div>
       </div>
       <div className="max-w-4xl mx-auto">

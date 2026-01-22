@@ -28,7 +28,7 @@ export function SearchForm({ searchQuery }: { searchQuery: string }) {
           placeholder="Search posts..."
           className={styles['search-input']}
         />
-        <button type="submit" className={styles['search-button']}>
+        <button type="submit" className={styles['search-button'] }>
           Search
         </button>
         {query && (
