@@ -19,7 +19,7 @@ export default function AboutPage() {
               valuable insights and tutorials that will help you level up your coding skills.
             </p>
             <p className="text-lg leading-relaxed mb-8 animate-fade-in-up">
-              Here at CodeScripted, I believe in the power of code to solve real-world problems and create amazing 
+              Here at CodeScripted, we believe in the power of code to solve real-world problems and create amazing 
               applications. My mission is to provide high-quality, practical content that developers can use in their 
               day-to-day work.
             </p>
