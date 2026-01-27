@@ -34,36 +34,62 @@
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
 }
 
-/* Markdown styling for light mode */
-.markdown {
-  background-color: #f8f9fa; /* Light gray background */
-  color: #212529; /* Dark text color */
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
-  padding: 1.5rem; /* Padding to give content some space */
-  border-radius: 0.75rem; /* Rounded corners */
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+/* Light mode styling for pre tags (code blocks) */
+.markdown pre {
+  background-color: #f5f7fa; /* Light gray background */
+  color: #333; /* Dark text color */
+  padding: 1rem;
+  border-radius: 0.25rem; /* Slightly rounded corners */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for card effect */
+  border: 1px solid #e1e4e8; /* Light border for card effect */
 }
 
-/* Headings in markdown content */
-.markdown h2, .markdown h3 {
-  font-weight: 700;
-  color: #343a40; /* Darker heading color */
+/* Dark mode styling for pre tags (code blocks) */
+[data-mode="dark"] .markdown pre {
+  background-color: #161b22; /* Darker gray background for card effect */
+  color: #ffab70; /* Orange text color */
+  padding: 1rem;
+  border-radius: 0.25rem; /* Slightly rounded corners */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Darker shadow for card effect */
+  border: 1px solid #3b434a; /* Darker border for card effect */
 }
 
-/* Markdown styling for dark mode */
-[data-mode="dark"] .markdown {
-  background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white background */
-  color: #e2e8f0; /* Light text color */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Light border */
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5); /* Inner shadow */
+/* Light mode styling for inline code */
+.markdown code {
+  background-color: #f5f7fa; /* Light gray background */
+  color: #59260B; /* More subtle text color for better contrast */
+  padding: 0.2rem 0.4rem; /* Add some padding */
+  border-radius: 0.25rem; /* Slightly rounded corners */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font */
 }
 
-/* Headings in markdown content for dark mode */
-[data-mode="dark"] .markdown h2, 
-[data-mode="dark"] .markdown h3 {
-  font-weight: 700;
-  color: #cbd5e1; /* Light heading color */
+/* Dark mode styling for inline code */
+[data-mode="dark"] .markdown code {
+  background-color: #161b22; /* Darker gray background for inline code */
+  color: #ffab70; /* Orange text color */
+  padding: 0.2rem 0.4rem; /* Add some padding */
+  border-radius: 0.25rem; /* Slightly rounded corners */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+}
+
+/* Hide scrollbars in WebKit-based browsers (Chrome, Safari) */
+.markdown pre::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+
+/* For Firefox */
+.markdown pre {
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+/* This ensures the content is still scrollable even though the scrollbars are hidden */
+.markdown pre {
+  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+  overflow: -moz-scrollbars-none; /* Hide scrollbar in old Firefox */
 }
 
 .post-preview-card {
