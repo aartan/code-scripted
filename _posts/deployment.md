@@ -28,7 +28,6 @@ Step 2: Initialize Your Project
 In your project directory, run the following command to initialize your deployment:
 
 ```bash
-Copy code
 vercel
 ```
 
@@ -57,7 +56,6 @@ Step 1: Build Your Application
 Run the build command to generate the static files for your application:
 
 ```bash
-Copy code
 npm run build
 ```
 

@@ -43,7 +43,6 @@ Form Validation
 Form validation ensures that the data submitted by users is correct and complete. You can implement validation using JavaScript or libraries like Yup or Formik:
 
 ```javascript
-Copy code
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object({
@@ -60,7 +59,6 @@ Server-Side Form Handling
 Next.js allows you to handle form submissions on the server using API routes. This is useful for processing data, sending emails, or interacting with a database:
 
 ```javascript
-Copy code
 export default function handler(req, res) {
   const { name, email, message } = req.body
 

@@ -42,7 +42,6 @@ One way to implement dark mode is by using CSS variables to define your color th
 In your component, you can toggle the dark mode class based on user preference:
 
 ```javascript
-Copy code
 import { useState } from 'react'
 
 export default function HomePage() {
@@ -62,7 +61,6 @@ Using JavaScript to Detect User Preference
 You can also detect the user’s system preference for dark mode using JavaScript:
 
 ```javascript
-Copy code
 useEffect(() => {
   const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
   setDarkMode(prefersDarkMode)

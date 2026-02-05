@@ -40,7 +40,6 @@ Using API Routes in Your Application
 You can call your API routes from any part of your application using fetch or other HTTP request methods. For example:
 
 ```javascript
-Copy code
 useEffect(() => {
   fetch('/api/hello')
     .then(response => response.json())

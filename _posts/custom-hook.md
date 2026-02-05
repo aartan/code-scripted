@@ -66,7 +66,6 @@ Step 2: Use the Custom Hook in a Component
 Now that we have our useFetch hook, let’s use it in a component:
 
 ```javascript
-Copy code
 import useFetch from './useFetch'
 
 export default function DataDisplay() {
