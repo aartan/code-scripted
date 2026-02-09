@@ -28,7 +28,7 @@ export function PostPreview({
     setIsClient(true);
 
     // Limit title to a certain number of characters
-    const maxTitleLength = 50; // Set the maximum number of characters allowed for the title
+    const maxTitleLength = 80; // Set the maximum number of characters allowed for the title
     if (title.length > maxTitleLength) {
       setTruncatedTitle(title.slice(0, maxTitleLength) + "...");
     }
