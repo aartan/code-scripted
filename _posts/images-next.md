@@ -50,6 +50,7 @@ export default function HomePage() {
 Automatic Resizing: Images are automatically resized to fit different screen sizes.
 Lazy Loading: Images are loaded only when they appear in the viewport, improving initial load times.
 Optimized Formats: Images are served in modern formats like WebP when supported by the browser.
-Conclusion
+
+## Conclusion
 
 Optimizing images in Next.js is a straightforward process that can have a significant impact on your website’s performance. By using the next/image component, you can ensure that your images are delivered quickly and efficiently, enhancing both user experience and SEO.

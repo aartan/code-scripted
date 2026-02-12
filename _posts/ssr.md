@@ -47,5 +47,6 @@ export default function Page({ data }) {
 ```
 In this example, getServerSideProps fetches data at request time and passes it to the page component for rendering.
 
-Conclusion
+## Conclusion
+
 Server-side rendering in Next.js is a powerful tool for improving the performance and SEO of your web applications. By understanding when and how to use SSR, you can create faster, more dynamic websites that provide a better user experience.

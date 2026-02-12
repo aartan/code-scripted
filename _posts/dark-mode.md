@@ -69,4 +69,5 @@ useEffect(() => {
 This code automatically applies the dark mode based on the user’s system settings.
 
 ## Conclusion
+
 Adding dark mode to your Next.js application is a great way to enhance user experience and modernize your site’s appearance. By implementing a dark mode toggle, you give users the flexibility to choose the theme that suits them best, improving accessibility and engagement.

@@ -74,7 +74,8 @@ export async function getStaticProps({ params }) {
 ```
 In this example, getStaticPaths is used to specify the dynamic routes to be pre-rendered, while getStaticProps fetches the necessary data at build time to generate the static pages.
 
-Conclusion
+## Conclusion
+
 Using static generation in Next.js is a powerful way to enhance the performance and SEO of your web applications. By pre-rendering pages, you can deliver a faster, more reliable experience to your users while also reducing the load on your servers. Whether you're building a blog, an e-commerce site, or any other type of web application, static generation is a technique worth mastering.
 
 Start leveraging the benefits of static generation in your Next.js projects today!

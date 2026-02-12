@@ -69,4 +69,5 @@ Step 4: Set Up Lambda Functions (Optional)
 For server-side rendering or API routes, use AWS Lambda to handle dynamic content.
 
 ## Conclusion
+
 Deploying your Next.js application is a crucial step in making your project available to users. By following this guide, you can deploy to Vercel, Netlify, or AWS, ensuring that your application is launched smoothly and performs well in production.

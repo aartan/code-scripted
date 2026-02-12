@@ -49,4 +49,5 @@ useEffect(() => {
 This code fetches data from the /api/hello route and logs the response to the console.
 
 ## Conclusion
+
 API routes in Next.js provide a flexible and powerful way to add backend functionality to your web applications. By leveraging these serverless endpoints, you can build more efficient and scalable applications without the complexity of managing a traditional server.
