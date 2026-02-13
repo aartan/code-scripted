@@ -62,7 +62,8 @@ export default function useFetch(url) {
   return { data, loading, error }
 }
 ```
-Step 2: Use the Custom Hook in a Component
+### Step 2: Use the Custom Hook in a Component
+
 Now that we have our useFetch hook, let’s use it in a component:
 
 ```javascript
@@ -82,7 +83,7 @@ export default function DataDisplay() {
   )
 }
 ```
-Step 3: Test and Reuse
+### Step 3: Test and Reuse
 
 With the useFetch hook, you can now easily reuse this data-fetching logic across different components without duplicating code. If your application requires fetching data from multiple endpoints, you can simply call useFetch with the relevant URL.
 
