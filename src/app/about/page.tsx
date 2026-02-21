@@ -28,7 +28,7 @@ export default function AboutPage() {
             <div className="flex flex-col md:flex-row items-center mb-16 mt-16 animate-fade-in-up">
               <div className="w-full md:w-1/3 mb-6 md:mb-0 md:mr-8 animate-scale-in">
                 <Image
-                  src="/assets/blog/authors/me.jpeg"
+                  src="/assets/blog/authors/me.png"
                   alt="Author Image"
                   width={300}
                   height={300}
