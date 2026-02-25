@@ -22,7 +22,7 @@ export function Footer() {
               Get in Touch
             </a>
             <a
-              href="https://twitter.com/your-profile"
+              href="https://twitter.com/abdifatah_artan"
               className="rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
             >
               Follow on Twitter
