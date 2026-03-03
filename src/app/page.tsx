@@ -6,7 +6,7 @@ import { Pagination } from "@/app/_components/pagination";
 import { getAllPosts } from "@/lib/api";
 import { Post } from "@/interfaces/post";
 import { SearchForm } from "./_components/searchform";
-//
+// test commit
 export default function Index({ searchParams }: { searchParams: { page?: string, query?: string } }) {
   const page = parseInt(searchParams.page || '1', 10) || 1;
   const searchQuery = searchParams.query || '';
