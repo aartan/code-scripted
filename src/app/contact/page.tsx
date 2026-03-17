@@ -2,103 +2,136 @@
 
 import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
-import { useState, ChangeEvent, FormEvent } from "react";
+import {useState, ChangeEvent, FormEvent, useEffect} from "react";
 import SuccessAlert from "@/app/_components/success-alert";
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission logic (e.g., send data to an API)
-    setShowSuccess(true);
-    // Clear the form by resetting formData to its initial state
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
     });
-  };
 
-  return (
-    <main>
-      <Container>
-        <Header />
-        <div className="py-16 flex justify-center">
-          <div className="w-full max-w-lg">
-            <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
-                />
-              </div>
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState("");
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
-                />
-              </div>
+    // Initialize EmailJS
+    useEffect(() => {
+        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    }, []);
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
-                />
-              </div>
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
+    };
 
-              <div>
-                <button
-                  type="submit"
-                  className="text-black w-full bg-black text-white py-3 px-4 rounded-md hover:bg-white hover:text-black border border-black transition-colors duration-200"
-                >
-                  Send Message
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div className="py-16"></div>
-      </Container>
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setError("");
 
-      {/* Success Alert */}
-      <SuccessAlert show={showSuccess} onClose={() => setShowSuccess(false)} />
-    </main>
-  );
+        try {
+            // Send email using EmailJS
+            await emailjs.send(
+                "service_peaud2y",
+                "template_agrlzoh",
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                }
+            );
+
+            setShowSuccess(true);
+            setFormData({
+                name: "",
+                email: "",
+                message: "",
+            });
+        } catch (err) {
+            console.error('Error sending email:', err);
+            setError("Failed to send message. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <main>
+            <Container>
+                <Header/>
+                <div className="py-16 flex justify-center">
+                    <div className="w-full max-w-lg">
+                        <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
+                        {error && (
+                            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                                {error}
+                            </div>
+                        )}
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="name" className="block text-sm font-medium">
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium">
+                                    Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+                                />
+                            </div>
+
+                            <div>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="text-black w-full bg-black text-white py-3 px-4 rounded-md hover:bg-white hover:text-black border border-black transition-colors duration-200"
+                                >
+                                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div className="py-16"></div>
+            </Container>
+
+            {/* Success Alert */}
+            <SuccessAlert show={showSuccess} onClose={() => setShowSuccess(false)}/>
+        </main>
+    );
 }
