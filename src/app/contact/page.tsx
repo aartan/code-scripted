@@ -19,7 +19,7 @@ export default function Contact() {
 
     // Initialize EmailJS
     useEffect(() => {
-        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        emailjs.init("dP5mcZbOuQkQ7P0_Q"); // Replace with your EmailJS public key
     }, []);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
