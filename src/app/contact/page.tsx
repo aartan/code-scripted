@@ -17,9 +17,9 @@ export default function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState("");
 
-    // Initialize EmailJS
+    // Initialize EmailJS with your public key
     useEffect(() => {
-        emailjs.init("dP5mcZbOuQkQ7P0_Q"); // Replace with your EmailJS public key
+        emailjs.init("dP5mcZbOuQkQ7P0_Q");
     }, []);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -33,26 +33,27 @@ export default function Contact() {
         setError("");
 
         try {
-            // Send email using EmailJS
-            await emailjs.send(
+            // Send email using EmailJS - passing formData directly
+            const result = await emailjs.send(
                 "service_peaud2y",
                 "template_agrlzoh",
                 {
                     name: formData.name,
                     email: formData.email,
-                    message: formData.message,
+                    message: formData.message
                 }
             );
 
+            console.log('Success:', result.text);
             setShowSuccess(true);
             setFormData({
                 name: "",
                 email: "",
                 message: "",
             });
-        } catch (err) {
+        } catch (err: any) {
             console.error('Error sending email:', err);
-            setError("Failed to send message. Please try again later.");
+            setError(err.text || "Failed to send message. Please try again later.");
         } finally {
             setIsSubmitting(false);
         }
@@ -111,6 +112,7 @@ export default function Contact() {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
+                                    rows={4}
                                     className="text-black mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
                                 />
                             </div>
