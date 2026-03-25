@@ -36,7 +36,7 @@ export default function Contact() {
             // Send email using EmailJS - passing formData directly
             const result = await emailjs.send(
                 "service_peaud2y",
-                "template_agrlzoh",
+                "template_gntfoc2",
                 {
                     name: formData.name,
                     email: formData.email,
