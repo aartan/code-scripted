@@ -31,7 +31,7 @@ export function Footer() {
                         <a
                             target="_blank"
                             href="https://www.linkedin.com/in/abdifatah-artan"
-                            className="rounded-md mx-3 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
+                            className="rounded-md mx-3 bg-blue-600 hover:bg-white hover:text-blue-600 border border-blue-600 text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
                         >
                             Connect on LinkedIn
                         </a>
