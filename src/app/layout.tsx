@@ -16,26 +16,69 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <head>
-        <link rel="shortcut icon" href="../../public/favicon/favicon.ico" type="image/x-icon" />
-        {/* Meta tags and other head elements */}
-      </head>
-      <body
-        className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
-      >
+    return (
+        <html lang="en" suppressHydrationWarning>
+        <head>
+            <link rel="shortcut icon" href="../../public/favicon/favicon.ico" type="image/x-icon" />
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+      (function() {
+        const STORAGE_KEY = "codescripted-key";
+        const mode = localStorage.getItem(STORAGE_KEY) || "system";
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
+        
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("light");
+          document.documentElement.setAttribute("data-mode", "dark");
+        } else {
+          document.documentElement.classList.add("light");
+          document.documentElement.classList.remove("dark");
+          document.documentElement.setAttribute("data-mode", "light");
+        }
+
+        // Re-apply when media query changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+          const currentMode = localStorage.getItem(STORAGE_KEY) || "system";
+          if (currentMode === "system") {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const newTheme = isDark ? "dark" : "light";
+            
+            if (newTheme === "dark") {
+              document.documentElement.classList.add("dark");
+              document.documentElement.classList.remove("light");
+              document.documentElement.setAttribute("data-mode", "dark");
+            } else {
+              document.documentElement.classList.add("light");
+              document.documentElement.classList.remove("dark");
+              document.documentElement.setAttribute("data-mode", "light");
+            }
+          }
+        });
+      })();
+    `
+                }}
+            />
+        </head>
+        <body
+            className={cn(
+                inter.className,
+                "dark:bg-slate-900 dark:text-slate-400"
+            )}
+        >
         <ThemeSwitcher />
         <div className="min-h-screen flex flex-col">
-          <div className="flex-grow">{children}</div> {/* Make the content fill the space */}
-          <Footer />
+            <div className="flex-grow">{children}</div>
+            <Footer />
         </div>
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }
 

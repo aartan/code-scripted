@@ -7,7 +7,7 @@
   background-color: #ffffff; /* White background */
   padding: 1.5rem;
   border-radius: 0.75rem;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
@@ -15,7 +15,7 @@
 [data-mode="dark"] .card {
   background-color: rgb(13, 17, 23); /* Dark background */
   color: #94a3b8; /* Text color */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
 }
 
 /* Hover effect for cards in dark mode */
@@ -23,7 +23,7 @@
   transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
     background-color: rgb(13, 17, 23);
     color: #94a3b8;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
 }
 
 /* Hover effect for cards in light mode */
@@ -31,7 +31,7 @@
   transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
   background-color: #f3f4f6; /* Light gray background on hover */
   color: #1f2937; /* Darker text color on hover */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
 }
 
 /* Light mode styling for pre tags (code blocks) */
@@ -42,7 +42,7 @@
   border-radius: 0.25rem; /* Slightly rounded corners */
   overflow-x: auto; /* Enable horizontal scrolling */
   font-family: 'Courier New', Courier, monospace; /* Monospace font */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for card effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for card effect */
   border: 1px solid #e1e4e8; /* Light border for card effect */
 }
 
@@ -54,7 +54,7 @@
   border-radius: 0.25rem; /* Slightly rounded corners */
   overflow-x: auto; /* Enable horizontal scrolling */
   font-family: 'Courier New', Courier, monospace; /* Monospace font */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Darker shadow for card effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Darker shadow for card effect */
   border: 1px solid #3b434a; /* Darker border for card effect */
 }
 
@@ -86,12 +86,6 @@
   scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
 
-/* This ensures the content is still scrollable even though the scrollbars are hidden */
-.markdown pre {
-  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
-  overflow: -moz-scrollbars-none; /* Hide scrollbar in old Firefox */
-}
-
 .post-preview-card {
   display: flex;
   flex-direction: column;
@@ -99,20 +93,20 @@
   padding: 1.5rem;
   background-color: #ffffff; /* White background */
   border-radius: 0.75rem;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 [data-mode="dark"] .post-preview-card {
   background-color: rgb(13, 17, 23); /* Dark background */
   color: #94a3b8; /* Text color */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
 }
 
 [data-mode="dark"] .post-preview-card:hover,
 [data-mode="light"] .post-preview-card:hover {
   transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
 }
 
 [data-mode="light"] .post-preview-card:hover {
@@ -127,4 +121,23 @@
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Number of lines to show */
   -webkit-box-orient: vertical;
+}
+
+.about-card {
+  transform: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+}
+
+[data-mode="light"] .about-card:hover {
+  background-color: #ffffff !important;
+  transform: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-mode="dark"] .about-card:hover {
+  background-color: rgb(13, 17, 23) !important;
+  transform: none !important;
 }

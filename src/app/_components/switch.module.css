@@ -11,7 +11,7 @@
   --size: 24px;
   height: var(--size);
   width: var(--size);
-  transition: all 0.3s ease-in-out 0s !important;
+  transition: none !important;
 }
 
 .switch::after {
@@ -47,21 +47,7 @@
 /* Dark mode */
 .switch[data-mode="dark"] {
   box-shadow: calc(var(--size) / 4) calc(var(--size) / -4) calc(var(--size) / 8)
-    inset #fff;
+  inset #fff;
   border: none;
   background: transparent;
-  animation: n linear 0.5s;
-}
-
-@keyframes n {
-  40% {
-    transform: rotate(-15deg);
-  }
-  80% {
-    transform: rotate(10deg);
-  }
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
 }
