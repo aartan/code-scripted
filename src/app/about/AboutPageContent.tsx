@@ -64,36 +64,36 @@ export default function AboutPageContent() {
         setScrolling(true);
         setActiveSection(section);
 
-        let targetRef: null;
+        let targetRef = null;
         let offset = 0;
 
         // Determine the target section and whether we need the offset
         if (section === "footer") {
-            targetRef = footerRef;
+            targetRef = footerRef.current;
         } else if (section === "author") {
-            targetRef = authorRef;
+            targetRef = authorRef.current;
         } else {
-            targetRef = introRef;
+            targetRef = introRef.current;
         }
 
         // Check if we're on mobile or desktop
         const isMobile = window.innerWidth < 768; // Adjust based on your mobile breakpoint
 
         // If not mobile, apply the offset for sections like "intro" or "author"
-        if (!isMobile && targetRef?.current) {
+        if (!isMobile && targetRef) {
             if (section === "intro" || section === "author") {
                 offset = 150; // Adjust this value according to your header height
             }
 
             // Apply scroll with the offset
             window.scrollTo({
-                top: targetRef.current.offsetTop - offset,
+                top: targetRef.offsetTop - offset,
                 behavior: "smooth",
             });
-        } else if (targetRef?.current) {
+        } else if (targetRef) {
             // For mobile devices, scroll without offset
             window.scrollTo({
-                top: targetRef.current.offsetTop,
+                top: targetRef.offsetTop,
                 behavior: "smooth",
             });
         }
