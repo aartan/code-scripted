@@ -64,7 +64,8 @@ export default function AboutPageContent() {
         setScrolling(true);
         setActiveSection(section);
 
-        let targetRef = null;
+        // Use a properly typed variable for the refs
+        let targetRef: HTMLDivElement | null = null;
         let offset = 0;
 
         // Determine the target section and whether we need the offset
