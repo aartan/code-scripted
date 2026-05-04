@@ -175,7 +175,7 @@ export default function AboutPageContent() {
                             >
                                 About The Author
                                 <svg
-                                    className="w-4 h-4 group-hover:translate-y-1 transition-transform"
+                                    className="w-4 h-4 animate-bounce"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
