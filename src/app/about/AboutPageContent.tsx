@@ -11,8 +11,6 @@ export default function AboutPageContent() {
     // Refs for each section
     const introRef = useRef<HTMLDivElement>(null);
     const authorRef = useRef<HTMLDivElement>(null);
-    const footerRef = useRef<HTMLDivElement>(null);
-
 
     // Handle initial page load with hash
     useEffect(() => {
@@ -35,9 +33,7 @@ export default function AboutPageContent() {
             const viewportHeight = window.innerHeight;
             const bottomThreshold = totalHeight - viewportHeight - 100;
 
-            if (window.scrollY >= bottomThreshold) {
-                setActiveSection("footer");
-            } else if (authorRef.current && scrollPosition >= authorRef.current.offsetTop) {
+            if (authorRef.current && scrollPosition >= authorRef.current.offsetTop) {
                 setActiveSection("author");
             } else {
                 setActiveSection("intro");
@@ -69,9 +65,7 @@ export default function AboutPageContent() {
         let offset = 0;
 
         // Determine the target section and whether we need the offset
-        if (section === "footer") {
-            targetRef = footerRef.current;
-        } else if (section === "author") {
+        if (section === "author") {
             targetRef = authorRef.current;
         } else {
             targetRef = introRef.current;
@@ -108,9 +102,8 @@ export default function AboutPageContent() {
 
     // Navigation dot sections
     const sections = [
-        { id: "intro", label: "Introduction" },
-        { id: "author", label: "About the Author" },
-        { id: "footer", label: "Contact" }
+        { id: "intro", label: "CodeScripted" },
+        { id: "author", label: "Author" }
     ];
 
     return (
@@ -147,79 +140,92 @@ export default function AboutPageContent() {
                 </div>
             </nav>
 
-            {/* Introduction Section - Adjusted to keep header visible */}
+            {/* Introduction Section - With responsive image handling */}
             <section
                 ref={introRef}
-                className="min-h-[calc(80vh)] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 mb-4"
+                className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 mb-4"
             >
-                <div className="w-full max-w-3xl mx-auto">
-                    <div className="dark:bg-[#0D1117] rounded-2xl shadow-lg p-5 sm:p-8 backdrop-blur-sm">
-                        <p className="text-base sm:text-lg leading-relaxed mb-4">
-                            Welcome to CodeScripted! This blog is dedicated to exploring the latest
-                            trends, tools, and techniques in software development and technology.
-                            Whether you're a seasoned developer or just starting out, you'll find valuable
-                            insights and tutorials that will help you level up your coding skills.
-                        </p>
+                <div className="w-full max-w-4xl mx-auto">
+                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                        <div className="flex flex-col md:flex-row gap-6 items-center">
+                            {/* Image only displays on larger screens */}
+                            <div className="hidden md:block w-2/5 relative h-64 rounded-xl overflow-hidden shadow-2xl mr-8">
+                                <Image
+                                    src="/assets/blog/codescripted.webp"
+                                    alt="Programming Code"
+                                    fill
+                                    sizes="(max-width: 768px) 0, 80vw"
+                                    priority
+                                    className="object-cover"
+                                />
+                            </div>
+                            <div className="w-full md:w-3/5">
+                                <p className="text-base sm:text-lg leading-relaxed mb-4">
+                                    This blog is dedicated to exploring the latest
+                                    trends, tools, and techniques in software development and technology.
+                                    Whether you're a seasoned developer or just starting out, you'll find valuable
+                                    insights and tutorials that will help you level up your coding skills.
+                                </p>
 
-                        <p className="text-base sm:text-lg leading-relaxed mb-6">
-                            Here at CodeScripted, we believe in the power of code to solve real-world
-                            problems and create amazing applications. My mission is to provide high-
-                            quality, practical content that developers can use in their day-to-day work.
-                        </p>
-
-                        <div className="flex justify-center mt-4">
-                            <button
-                                onClick={() => scrollToSection("author")}
-                                className="group flex items-center gap-2 px-5 py-2.5
-                         transition-all"
-                            >
-                                About The Author
-                                <svg
-                                    className="w-4 h-4 animate-bounce"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                                    />
-                                </svg>
-                            </button>
+                                <p className="text-base sm:text-lg leading-relaxed mb-6">
+                                    Here at CodeScripted, we believe in the power of code to solve real-world
+                                    problems and create amazing applications. My mission is to provide high-
+                                    quality, practical content that developers can use in their day-to-day work.
+                                </p>
+                            </div>
                         </div>
+                    </div>
+                    <div className="flex justify-center">
+                        <button
+                            onClick={() => scrollToSection("author")}
+                            className="group flex items-center gap-2 px-5 py-2.5
+                         transition-all"
+                        >
+                            About The Author
+                            <svg
+                                className="w-4 h-4 animate-bounce"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                                />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </section>
 
-            {/* Author Section - Adjusted to keep header visible */}
-            {/* Author Section - Improved button positioning */}
             <section
                 ref={authorRef}
-                className="min-h-[calc(80vh)] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8"
+                className="min-h-[100vh)] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 mt-8 mb-24"
             >
-                <div className="w-full max-w-3xl mx-auto">
-                    <div className="dark:bg-[#0D1117] rounded-2xl shadow-lg p-5 sm:p-8 backdrop-blur-sm">
-                        {/* Author content */}
-                        <div className="flex flex-col items-center">
-                            {/* Image Container */}
-                            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 relative rounded-full overflow-hidden
-                   border-2 sm:border-3 border-gray-200 dark:border-gray-700 shadow-md mb-5">
+                <div className="w-full max-w-4xl mx-auto">
+                    <div className="flex flex-col items-center">
+                        <div className="flex flex-col md:flex-row gap-8 items-center w-full">
+                            {/* Image Container - Larger and with better styling */}
+                            <div className="hidden md:block md:w-48 md:h-48 relative rounded-full overflow-hidden
+                border-2 border-gray-200 dark:border-gray-600 shadow-lg
+                flex-shrink-0 mr-8">
                                 <Image
                                     src="/assets/blog/authors/me.png"
                                     alt="Abdifatah"
                                     fill
-                                    sizes="(max-width: 640px) 6rem, (max-width: 768px) 7rem, 8rem"
+                                    sizes="(max-width: 768px) 0, 12rem"
                                     priority
                                     className="object-cover"
                                 />
                             </div>
 
                             {/* Text content */}
-                            <div className="w-full">
-                                <p className="text-sm sm:text-base leading-relaxed mb-2 text-center">
+                            <div className="flex-grow">
+                                <div className="w-full">
+                                <p className="text-sm sm:text-base leading-relaxed mb-2">
                                     My name is Abdifatah, and I'm a software engineer who enjoys solving
                                     problems using code and building things that make a difference. Throughout
                                     my career, I've had the privilege of working with some outstanding teams
@@ -227,23 +233,24 @@ export default function AboutPageContent() {
                                     development.
                                 </p>
 
-                                <p className="text-sm sm:text-base leading-relaxed mb-2 text-center">
+                                <p className="text-sm sm:text-base leading-relaxed mb-2">
                                     I've spent a lot of time in the trenches, tackling complex problems and
                                     crafting solutions that make a real difference. Through CodeScripted, I'm
                                     excited to share what I've learned, offer insights, and dive deep into the
                                     technologies and practices that drive our industry forward.
                                 </p>
 
-                                <p className="text-sm sm:text-base leading-relaxed mb-6 text-center">
+                                <p className="text-sm sm:text-base leading-relaxed mb-6">
                                     Thank you for visiting, and I hope you find the content both informative and
                                     inspiring. Feel free to reach out if you have any questions, suggestions, or
                                     just want to connect!
                                 </p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Navigation buttons - Placed together at the bottom for consistency */}
-                        <div className="flex justify-center gap-4 mt-4">
+                        {/* Navigation button - below content with original styling */}
+                        <div className="flex justify-center gap-4 mt-8">
                             <button
                                 onClick={() => {
                                     window.scrollTo({
@@ -252,12 +259,11 @@ export default function AboutPageContent() {
                                     });
                                     setActiveSection("intro");
                                 }}
-                                className="group flex items-center justify-center gap-2 px-5 py-2
-                    bg-transparent rounded-full transition-all"
+                                className="group flex items-center justify-center gap-2 px-5 py-2 transition-all"
                                 aria-label="Back to top of page"
                             >
                                 <svg
-                                    className="w-4 h-4 group-hover:-translate-y-1 transition-transform"
+                                    className="w-4 h-4 animate-bounce"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -270,38 +276,12 @@ export default function AboutPageContent() {
                                         d="M19 9l-7-7m0 0l-7 7m7-7v18"
                                     />
                                 </svg>
-                                Back to Top
-                            </button>
-
-                            <button
-                                onClick={() => scrollToSection("footer")}
-                                className="group flex items-center justify-center gap-2 px-5 py-2
-                    bg-transparent rounded-full transition-all"
-                                aria-label="Navigate to contact section"
-                            >
-                                Let's Connect
-                                <svg
-                                    className="w-4 h-4 group-hover:translate-y-1 transition-transform"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                                    />
-                                </svg>
+                                About CodeScripted
                             </button>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/* Placeholder for footer section */}
-            <div ref={footerRef} className="h-20" />
         </div>
     );
 }
