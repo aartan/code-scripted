@@ -29,9 +29,6 @@ export default function AboutPageContent() {
             if (scrolling) return;
 
             const scrollPosition = window.scrollY + window.innerHeight / 3;
-            const totalHeight = document.documentElement.scrollHeight;
-            const viewportHeight = window.innerHeight;
-            const bottomThreshold = totalHeight - viewportHeight - 100;
 
             if (authorRef.current && scrollPosition >= authorRef.current.offsetTop) {
                 setActiveSection("author");
