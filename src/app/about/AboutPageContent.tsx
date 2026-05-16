@@ -73,8 +73,10 @@ export default function AboutPageContent() {
 
         // If not mobile, apply the offset for sections like "intro" or "author"
         if (!isMobile && targetRef) {
-            if (section === "intro" || section === "author") {
-                offset = 150; // Adjust this value according to your header height
+            if (section === "intro") {
+                offset = 150; // Offset for intro section
+            } else if (section === "author") {
+                offset = 100; // Reduced offset for author section to center it better
             }
 
             // Apply scroll with the offset
@@ -140,10 +142,10 @@ export default function AboutPageContent() {
             {/* Introduction Section - With responsive image handling */}
             <section
                 ref={introRef}
-                className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 mb-4"
+                className="min-h-[75vh] flex items-center justify-center mb-12"
             >
                 <div className="w-full max-w-4xl mx-auto">
-                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                    <div className="flex flex-col md:flex-row gap-8 items-center md:my-24">
                         <div className="flex flex-col md:flex-row gap-6 items-center">
                             {/* Image only displays on larger screens */}
                             <div className="hidden md:block w-2/5 relative h-64 rounded-xl overflow-hidden shadow-2xl mr-8">
@@ -175,7 +177,7 @@ export default function AboutPageContent() {
                     <div className="flex justify-center">
                         <button
                             onClick={() => scrollToSection("author")}
-                            className="group flex items-center gap-2 px-5 py-2.5
+                            className="group flex items-center gap-2 px-5
                          transition-all"
                         >
                             About The Author
@@ -200,11 +202,11 @@ export default function AboutPageContent() {
 
             <section
                 ref={authorRef}
-                className="min-h-[100vh)] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 mt-8 mb-24"
+                className="min-h-[90vh] flex items-center justify-center px-4 sm:px-6"
             >
                 <div className="w-full max-w-4xl mx-auto">
                     <div className="flex flex-col items-center">
-                        <div className="flex flex-col md:flex-row gap-8 items-center w-full">
+                        <div className="flex flex-col md:flex-row gap-8 items-center w-full my-3 md:mb-24">
                             {/* Image Container - Larger and with better styling */}
                             <div className="hidden md:block md:w-48 md:h-48 relative rounded-full overflow-hidden
                 border-2 border-gray-200 dark:border-gray-600 shadow-lg
@@ -222,7 +224,7 @@ export default function AboutPageContent() {
                             {/* Text content */}
                             <div className="flex-grow">
                                 <div className="w-full">
-                                <p className="text-sm sm:text-base leading-relaxed mb-2">
+                                <p className="sm:text-base leading-relaxed mb-2">
                                     My name is Abdifatah, and I'm a software engineer who enjoys solving
                                     problems using code and building things that make a difference. Throughout
                                     my career, I've had the privilege of working with some outstanding teams
@@ -230,14 +232,14 @@ export default function AboutPageContent() {
                                     development.
                                 </p>
 
-                                <p className="text-sm sm:text-base leading-relaxed mb-2">
+                                <p className="sm:text-base leading-relaxed mb-2">
                                     I've spent a lot of time in the trenches, tackling complex problems and
                                     crafting solutions that make a real difference. Through CodeScripted, I'm
                                     excited to share what I've learned, offer insights, and dive deep into the
                                     technologies and practices that drive our industry forward.
                                 </p>
 
-                                <p className="text-sm sm:text-base leading-relaxed mb-6">
+                                <p className="sm:text-base leading-relaxed mb-6">
                                     Thank you for visiting, and I hope you find the content both informative and
                                     inspiring. Feel free to reach out if you have any questions, suggestions, or
                                     just want to connect!
@@ -247,7 +249,7 @@ export default function AboutPageContent() {
                         </div>
 
                         {/* Navigation button - below content with original styling */}
-                        <div className="flex justify-center gap-4 mt-8">
+                        <div className="flex justify-center gap-4">
                             <button
                                 onClick={() => {
                                     window.scrollTo({
