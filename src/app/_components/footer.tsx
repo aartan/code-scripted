@@ -10,12 +10,6 @@ export function Footer() {
                     </h3>
                     <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-16 lg:w-1/2">
                         <a
-                            href="/"
-                            className="rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px] min-h-0 lg:min-h-[75px] flex items-center justify-center"
-                        >
-                            Home
-                        </a>
-                        <a
                             href="/about"
                             className="rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
                         >
