@@ -148,17 +148,16 @@ export default function AboutPageContent() {
                     <div className="flex flex-col md:flex-row gap-8 items-center md:my-24">
                         <div className="flex flex-col md:flex-row gap-6 items-center">
                             {/* Image only displays on larger screens */}
-                            <div className="hidden md:block w-2/5 relative h-64 rounded-xl overflow-hidden shadow-2xl mr-8">
+                            <div className="w-full md:w-2/5 relative h-64 rounded-xl overflow-hidden shadow-2xl md:mr-8 mb-6 md:mb-0">
                                 <Image
                                     src="/assets/blog/codescripted.webp"
                                     alt="Programming Code"
                                     fill
-                                    sizes="(max-width: 768px) 0, 80vw"
+                                    sizes="(max-width: 768px) 100vw, 80vw"
                                     priority
                                     className="object-cover"
                                 />
-                            </div>
-                            <div className="w-full md:w-3/5">
+                            </div>                            <div className="w-full md:w-3/5">
                                 <p className="text-base sm:text-lg leading-relaxed mb-4">
                                     This blog is dedicated to exploring the latest
                                     trends, tools, and techniques in software development and technology.
@@ -166,7 +165,7 @@ export default function AboutPageContent() {
                                     insights and tutorials that will help you level up your coding skills.
                                 </p>
 
-                                <p className="text-base sm:text-lg leading-relaxed mb-6">
+                                <p className="text-base sm:text-lg leading-relaxed mb-4">
                                     Here at CodeScripted, we believe in the power of code to solve real-world
                                     problems and create amazing applications. My mission is to provide high-
                                     quality, practical content that developers can use in their day-to-day work.
@@ -174,11 +173,10 @@ export default function AboutPageContent() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="hidden md:flex justify-center">
                         <button
                             onClick={() => scrollToSection("author")}
-                            className="group flex items-center gap-2 px-5
-                         transition-all"
+                            className="group flex items-center gap-2 px-5 transition-all text-base sm:text-lg leading-relaxed mb-4"
                         >
                             About The Author
                             <svg
@@ -208,14 +206,14 @@ export default function AboutPageContent() {
                     <div className="flex flex-col items-center">
                         <div className="flex flex-col md:flex-row gap-8 items-center w-full my-3 md:mb-24">
                             {/* Image Container - Larger and with better styling */}
-                            <div className="hidden md:block md:w-48 md:h-48 relative rounded-full overflow-hidden
-                border-2 border-gray-200 dark:border-gray-600 shadow-lg
-                flex-shrink-0 mr-8">
+                            <div className="w-32 h-32 md:w-48 md:h-48 relative rounded-full overflow-hidden
+border-2 border-gray-200 dark:border-gray-600 shadow-lg
+flex-shrink-0 md:mr-8 mb-6 md:mb-0">
                                 <Image
                                     src="/assets/blog/authors/me.png"
                                     alt="Abdifatah"
                                     fill
-                                    sizes="(max-width: 768px) 0, 12rem"
+                                    sizes="(max-width: 768px) 8rem, 12rem"
                                     priority
                                     className="object-cover"
                                 />
@@ -224,7 +222,7 @@ export default function AboutPageContent() {
                             {/* Text content */}
                             <div className="flex-grow">
                                 <div className="w-full">
-                                <p className="sm:text-base leading-relaxed mb-2">
+                                <p className="text-base sm:text-lg leading-relaxed mb-4">
                                     My name is Abdifatah, and I'm a software engineer who enjoys solving
                                     problems using code and building things that make a difference. Throughout
                                     my career, I've had the privilege of working with some outstanding teams
@@ -232,14 +230,14 @@ export default function AboutPageContent() {
                                     development.
                                 </p>
 
-                                <p className="sm:text-base leading-relaxed mb-2">
+                                <p className="text-base sm:text-lg leading-relaxed mb-4">
                                     I've spent a lot of time in the trenches, tackling complex problems and
                                     crafting solutions that make a real difference. Through CodeScripted, I'm
                                     excited to share what I've learned, offer insights, and dive deep into the
                                     technologies and practices that drive our industry forward.
                                 </p>
 
-                                <p className="sm:text-base leading-relaxed mb-6">
+                                <p className="text-base sm:text-lg leading-relaxed mb-4">
                                     Thank you for visiting, and I hope you find the content both informative and
                                     inspiring. Feel free to reach out if you have any questions, suggestions, or
                                     just want to connect!
@@ -249,7 +247,7 @@ export default function AboutPageContent() {
                         </div>
 
                         {/* Navigation button - below content with original styling */}
-                        <div className="flex justify-center gap-4">
+                        <div className="flex justify-center gap-4 text-base sm:text-lg leading-relaxed mb-4">
                             <button
                                 onClick={() => {
                                     window.scrollTo({
@@ -258,7 +256,7 @@ export default function AboutPageContent() {
                                     });
                                     setActiveSection("intro");
                                 }}
-                                className="group flex items-center justify-center gap-2 px-5 py-2 transition-all"
+                                className="hidden group md:flex items-center justify-center gap-2 px-5 py-2 transition-all"
                                 aria-label="Back to top of page"
                             >
                                 <svg
