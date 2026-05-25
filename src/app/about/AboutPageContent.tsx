@@ -32,8 +32,16 @@ export default function AboutPageContent() {
 
             if (authorRef.current && scrollPosition >= authorRef.current.offsetTop) {
                 setActiveSection("author");
+                // Update URL hash when scrolling to author section
+                if (window.location.hash !== "#author") {
+                    window.history.replaceState(null, "", `#author`);
+                }
             } else {
                 setActiveSection("intro");
+                // Update URL hash when scrolling to intro section
+                if (window.location.hash !== "#intro" && window.location.hash !== "") {
+                    window.history.replaceState(null, "", `#intro`);
+                }
             }
         };
 
@@ -249,13 +257,7 @@ flex-shrink-0 md:mr-8 mb-6 md:mb-0">
                         {/* Navigation button - below content with original styling */}
                         <div className="flex justify-center gap-4 text-base sm:text-lg leading-relaxed mb-4">
                             <button
-                                onClick={() => {
-                                    window.scrollTo({
-                                        top: 0,
-                                        behavior: "smooth"
-                                    });
-                                    setActiveSection("intro");
-                                }}
+                                onClick={() => scrollToSection("intro")}
                                 className="hidden group md:flex items-center justify-center gap-2 px-5 py-2 transition-all"
                                 aria-label="Back to top of page"
                             >
