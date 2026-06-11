@@ -382,7 +382,7 @@ export default function AboutPageContent() {
                                     }
                                 }}
                             >
-                                About The Author
+                                Read More
                                 <svg
                                     className="w-4 h-4 animate-bounce"
                                     fill="none"
