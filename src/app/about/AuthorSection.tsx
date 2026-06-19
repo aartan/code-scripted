@@ -80,7 +80,7 @@ export default function AuthorSection({
     return (
         <section
             ref={sectionRef}
-            className={`absolute w-full h-full flex items-center justify-center px-4 sm:px-6 transition-all duration-1000 ease-in-out
+            className={`absolute w-full h-[75%] flex items-center justify-center px-4 sm:px-6 transition-all duration-1000 ease-in-out
                 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}
         >
             <div className="w-full max-w-4xl mx-auto">
