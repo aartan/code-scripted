@@ -19,7 +19,7 @@ export default function AuthorSection({
     // Common content rendering
     const renderContent = () => (
         <>
-            <div className={`${isMobile ? 'w-32 h-32' : 'w-32 h-32 md:w-48 md:h-48'} relative rounded-full overflow-hidden
+            <div className={`${isMobile ? 'w-32 h-32' : 'w-32 h-32 md:w-64 md:h-64'} relative rounded-full overflow-hidden
                 border-2 border-gray-200 dark:border-gray-600 shadow-lg
                 flex-shrink-0 ${isMobile ? '' : 'md:mr-8'} mb-6 ${isMobile ? '' : 'md:mb-0'}`}>
                 <Image

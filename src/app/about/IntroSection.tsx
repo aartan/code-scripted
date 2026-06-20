@@ -20,7 +20,7 @@ export default function IntroSection({
     // Common content rendering
     const renderContent = () => (
         <>
-            <div className={`w-full ${isMobile ? '' : 'md:w-2/5'} relative h-64 rounded-xl overflow-hidden shadow-2xl ${isMobile ? 'mb-6' : 'md:mr-8 mb-6 md:mb-0'}`}>
+            <div className={`w-full ${isMobile ? '' : 'md:w-2/5'} relative h-72 rounded-xl overflow-hidden shadow-2xl ${isMobile ? 'mb-6' : 'md:mr-8 mb-6 md:mb-0'}`}>
                 <Image
                     src="/assets/blog/codescripted.webp"
                     alt="Programming Code"
