@@ -20,15 +20,28 @@ export default function IntroSection({
     // Common content rendering
     const renderContent = () => (
         <>
-            <div className={`w-full ${isMobile ? '' : 'md:w-2/5'} relative h-72 rounded-xl overflow-hidden shadow-2xl ${isMobile ? 'mb-6' : 'md:mr-8 mb-6 md:mb-0'}`}>
+            <div className={`
+    w-full ${isMobile ? '' : 'md:w-2/5'} 
+    relative h-72 rounded-xl overflow-hidden 
+    shadow-2xl 
+    border border-gray-200 
+    bg-gradient-to-r from-blue-50 to-indigo-50
+    ${isMobile ? 'mb-6' : 'md:mr-8 mb-6 md:mb-0'}
+`}>
+                {/* Optional decorative element */}
+                <div className="absolute -top-4 -left-4 w-16 h-16 bg-blue-500 rounded-full opacity-20 z-0"></div>
+
                 <Image
                     src="/assets/blog/codescripted.webp"
                     alt="Programming Code"
                     fill
                     sizes={isMobile ? "100vw" : "(max-width: 768px) 100vw, 80vw"}
                     priority
-                    className="object-cover"
+                    className="object-cover relative z-10"
                 />
+
+                {/* Optional subtle overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-transparent z-20"></div>
             </div>
             <div className={`w-full ${isMobile ? '' : 'md:w-3/5'}`}>
                 <p className="text-base sm:text-lg leading-relaxed mb-4">
