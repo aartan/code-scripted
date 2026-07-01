@@ -63,10 +63,10 @@ export default function Contact() {
         <main>
             <Container>
                 <Header/>
-                <div className="py-12 md:py-20">
+                <div className="py-12 md:py-24">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-12">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+                            <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
                             <p className="text-lg max-w-2xl mx-auto">
                                 Have a question, feedback, or an idea for a topic you'd like us to cover? We'd love to hear from you! Just fill out the form below and we'll get back to you as soon as we can.
                             </p>
