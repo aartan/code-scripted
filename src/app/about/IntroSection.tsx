@@ -98,7 +98,7 @@ export default function IntroSection({
                             disabled={isTransitioning}
                             style={{
                                 transition: "all 0.3s ease",
-                                color: "var(--text-color, #333333)", /* Dynamic color based on theme */
+                                color: "currentColor", /* Dynamic color based on theme */
                             }}
                             onMouseEnter={(e) => {
                                 // Detect if we're in dark mode or light mode by checking the background color
@@ -140,6 +140,7 @@ export default function IntroSection({
                                     e.currentTarget.style.fontWeight = "normal";
                                     e.currentTarget.style.transform = "translateX(0)";
                                 }
+
 
                                 // Add null check for SVG element
                                 const svgElement = e.currentTarget.querySelector("svg");

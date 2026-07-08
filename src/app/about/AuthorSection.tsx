@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { RefObject } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 interface AuthorSectionProps {
     sectionRef: RefObject<HTMLDivElement>;
@@ -7,6 +7,8 @@ interface AuthorSectionProps {
     isActive?: boolean;
     onBackToTop?: () => void;
     isTransitioning?: boolean;
+    onGoToFooter?: () => void; // Added prop for footer navigation
+    previousSection?: string; // Add this to track where we're coming from
 }
 
 export default function AuthorSection({
@@ -14,8 +16,22 @@ export default function AuthorSection({
                                           isMobile,
                                           isActive = true,
                                           onBackToTop,
-                                          isTransitioning
+                                          isTransitioning,
+                                          onGoToFooter,
+                                          previousSection
                                       }: AuthorSectionProps) {
+    // Track the animation direction based on the previous section
+    const [transitionDirection, setTransitionDirection] = useState<'from-top' | 'from-bottom'>('from-bottom');
+
+    // Update the transition direction when the active state or previous section changes
+    useEffect(() => {
+        if (previousSection === "footer") {
+            setTransitionDirection('from-top');
+        } else {
+            setTransitionDirection('from-bottom');
+        }
+    }, [previousSection, isActive]);
+
     // Common content rendering
     const renderContent = () => (
         <>
@@ -76,22 +92,26 @@ export default function AuthorSection({
         );
     }
 
-    // Desktop version with animations
+    // Desktop version with direction-based animations
     return (
         <section
             ref={sectionRef}
             className={`absolute w-full h-[75%] flex items-center justify-center px-4 sm:px-6 transition-all duration-1000 ease-in-out
-                ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}
+                ${isActive ? "opacity-100 translate-y-0" :
+                transitionDirection === 'from-top'
+                    ? "opacity-0 -translate-y-full pointer-events-none"
+                    : "opacity-0 translate-y-full pointer-events-none"}`}
         >
             <div className="w-full max-w-4xl mx-auto">
                 <div className="flex flex-col items-center">
-                    <div className="flex flex-col md:flex-row gap-8 items-center w-full my-3 md:mb-24">
+                    <div className="flex flex-col md:flex-row gap-8 items-center w-full my-3 md:mb-16">
                         {renderContent()}
                     </div>
 
-                    {/* Navigation button */}
-                    {onBackToTop && (
-                        <div className="flex justify-center gap-4 text-base sm:text-lg leading-relaxed mb-4">
+                    {/* Navigation buttons container */}
+                    <div className="flex justify-center gap-6 text-base sm:text-lg leading-relaxed mb-4">
+                        {/* Back to top button */}
+                        {onBackToTop && (
                             <button
                                 onClick={onBackToTop}
                                 className="group flex items-center justify-center gap-2 px-5 py-2 transition-all"
@@ -99,7 +119,7 @@ export default function AuthorSection({
                                 disabled={isTransitioning}
                                 style={{
                                     transition: "all 0.3s ease",
-                                    color: "var(--text-color, #333333)", /* Dynamic color based on theme */
+                                    color: "currentColor",
                                 }}
                                 onMouseEnter={(e) => {
                                     // Detect if we're in dark mode or light mode by checking the background color
@@ -171,8 +191,82 @@ export default function AuthorSection({
                                 </svg>
                                 Back To Top
                             </button>
-                        </div>
-                    )}
+                        )}
+
+                        {/* Go to footer button */}
+                        {onGoToFooter && (
+                            <button
+                                onClick={onGoToFooter}
+                                className="group flex items-center justify-center gap-2 px-5 py-2 transition-all"
+                                aria-label="Go to footer"
+                                disabled={isTransitioning}
+                                style={{
+                                    transition: "all 0.3s ease",
+                                    color: "currentColor",
+                                }}
+                                onMouseEnter={(e) => {
+                                    const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
+                                    const brightness = isDarkMode ?
+                                        (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
+
+                                    if (brightness < 128) {
+                                        e.currentTarget.style.color = "#ffffff";
+                                    } else {
+                                        e.currentTarget.style.color = "#000000";
+                                        e.currentTarget.style.fontWeight = "600";
+                                        e.currentTarget.style.transform = "translateY(2px)";
+                                    }
+
+                                    const svgElement = e.currentTarget.querySelector("svg");
+                                    if (svgElement) {
+                                        svgElement.style.transform = "translateY(3px)";
+                                        svgElement.style.opacity = "1";
+                                        svgElement.classList.remove("animate-bounce");
+                                    }
+                                }}
+                                onMouseLeave={(e) => {
+                                    const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
+                                    const brightness = isDarkMode ?
+                                        (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
+
+                                    if (brightness < 128) {
+                                        e.currentTarget.style.color = "#a0a6b5";
+                                    } else {
+                                        e.currentTarget.style.color = "#555555";
+                                        e.currentTarget.style.fontWeight = "normal";
+                                        e.currentTarget.style.transform = "translateY(0)";
+                                    }
+
+                                    const svgElement = e.currentTarget.querySelector("svg");
+                                    if (svgElement) {
+                                        svgElement.style.transform = "translateY(0)";
+                                        svgElement.style.opacity = "0.8";
+                                        svgElement.classList.add("animate-bounce");
+                                    }
+                                }}
+                            >
+                                <svg
+                                    className="w-4 h-4 animate-bounce"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    style={{
+                                        transition: "all 0.3s ease",
+                                        opacity: "0.8",
+                                    }}
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                                    />
+                                </svg>
+                                Go To Bottom
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
         </section>
