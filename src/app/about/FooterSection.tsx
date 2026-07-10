@@ -24,10 +24,10 @@ export default function FooterSection({
             </h3>
             <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-16 lg:w-1/2">
                 <a
-                    href="/about"
-                    className="rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
+                    href="/"
+                    className="flex items-center justify-center md:min-h-[75px] rounded-md mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
                 >
-                    About CodeScripted
+                    Home
                 </a>
                 <a
                     href="/contact"
