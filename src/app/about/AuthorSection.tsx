@@ -205,38 +205,47 @@ export default function AuthorSection({
                                     color: "currentColor",
                                 }}
                                 onMouseEnter={(e) => {
+                                    // Detect if we're in dark mode or light mode by checking the background color
                                     const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
                                     const brightness = isDarkMode ?
                                         (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
 
+                                    // Set appropriate hover color based on detected theme
                                     if (brightness < 128) {
+                                        // Dark mode
                                         e.currentTarget.style.color = "#ffffff";
                                     } else {
+                                        // Light mode - more noticeable change but still black and white
                                         e.currentTarget.style.color = "#000000";
-                                        e.currentTarget.style.fontWeight = "600";
-                                        e.currentTarget.style.transform = "translateY(2px)";
+                                        e.currentTarget.style.fontWeight = "600"; // More bold for visibility
+                                        e.currentTarget.style.transform = "translateY(2px)"; // Downward shift for "lets connect"
                                     }
 
+                                    // Add null check for SVG element
                                     const svgElement = e.currentTarget.querySelector("svg");
                                     if (svgElement) {
-                                        svgElement.style.transform = "translateY(3px)";
+                                        svgElement.style.transform = "translateY(3px)"; // Move arrow down for "lets connect"
                                         svgElement.style.opacity = "1";
                                         svgElement.classList.remove("animate-bounce");
                                     }
                                 }}
                                 onMouseLeave={(e) => {
+                                    // Return to the default color for the current theme
                                     const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
                                     const brightness = isDarkMode ?
                                         (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
 
                                     if (brightness < 128) {
+                                        // Dark mode
                                         e.currentTarget.style.color = "#a0a6b5";
                                     } else {
-                                        e.currentTarget.style.color = "#555555";
+                                        // Light mode
+                                        e.currentTarget.style.color = "#555555"; // Slightly darker than before for better contrast
                                         e.currentTarget.style.fontWeight = "normal";
                                         e.currentTarget.style.transform = "translateY(0)";
                                     }
 
+                                    // Add null check for SVG element
                                     const svgElement = e.currentTarget.querySelector("svg");
                                     if (svgElement) {
                                         svgElement.style.transform = "translateY(0)";
@@ -263,7 +272,7 @@ export default function AuthorSection({
                                         d="M19 14l-7 7m0 0l-7-7m7 7V3"
                                     />
                                 </svg>
-                                Go To Bottom
+                                Lets Connect
                             </button>
                         )}
                     </div>

@@ -18,7 +18,7 @@ export default function DesktopView() {
     const sections = [
         { id: "intro", label: "CodeScripted" },
         { id: "author", label: "Author" },
-        { id: "footer", label: "Footer" }
+        { id: "footer", label: "Lets Connect" }
     ];
 
     // Use our custom hook for fullpage scrolling
