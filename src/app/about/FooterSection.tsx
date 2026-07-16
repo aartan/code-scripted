@@ -19,81 +19,78 @@ const NetworkingIllustration = () => (
         xmlns="http://www.w3.org/2000/svg"
         className="max-w-full h-auto"
     >
-        {/* Background Circle - Reduced opacity in dark mode, no blue */}
-        <circle cx="120" cy="80" r="75" fill="#f0f4ff" opacity="0.2" className="dark:fill-gray-800 dark:opacity-20" />
-
         {/* Central Person */}
         <circle cx="120" cy="80" r="18" fill="#3B82F6" className="dark:fill-blue-400" />
-        <circle cx="120" cy="80" r="22" stroke="#3B82F6" strokeWidth="2" strokeOpacity="0.5" className="dark:stroke-blue-400 dark:stroke-opacity-0" />
+        <circle cx="120" cy="80" r="22" stroke="#3B82F6" strokeWidth="2" strokeOpacity="0.5" className="dark:stroke-opacity-0" />
         <circle cx="120" cy="62" r="8" fill="#3B82F6" className="dark:fill-blue-400" /> {/* Head */}
 
-        {/* Connected People - Enhanced for dark mode */}
+        {/* Connected People - Enhanced for dark mode with softer colors */}
         {/* Person 1 */}
-        <circle cx="60" cy="40" r="12" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="60" cy="28" r="6" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
+        <circle cx="60" cy="40" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
+        <circle cx="60" cy="28" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
 
         {/* Person 2 */}
-        <circle cx="180" cy="40" r="12" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="180" cy="28" r="6" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
+        <circle cx="180" cy="40" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
+        <circle cx="180" cy="28" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
 
         {/* Person 3 */}
-        <circle cx="60" cy="120" r="12" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="60" cy="108" r="6" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
+        <circle cx="60" cy="120" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
+        <circle cx="60" cy="108" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
 
         {/* Person 4 */}
-        <circle cx="180" cy="120" r="12" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="180" cy="108" r="6" fill="#000000" className="dark:fill-gray-200 dark:stroke-gray-100 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
+        <circle cx="180" cy="120" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
+        <circle cx="180" cy="108" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
 
-        {/* Small people - Enhanced for dark mode */}
+        {/* Small people - Enhanced for dark mode with softer colors */}
         {/* Person 5 */}
-        <circle cx="30" cy="80" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" />
-        <circle cx="30" cy="72" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" /> {/* Head */}
+        <circle cx="30" cy="80" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
+        <circle cx="30" cy="72" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
 
         {/* Person 6 */}
-        <circle cx="210" cy="80" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" />
-        <circle cx="210" cy="72" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" /> {/* Head */}
+        <circle cx="210" cy="80" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
+        <circle cx="210" cy="72" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
 
         {/* Person 7 */}
-        <circle cx="90" cy="20" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" />
-        <circle cx="90" cy="12" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" /> {/* Head */}
+        <circle cx="90" cy="20" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
+        <circle cx="90" cy="12" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
 
         {/* Person 8 */}
-        <circle cx="150" cy="20" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" />
-        <circle cx="150" cy="12" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" /> {/* Head */}
+        <circle cx="150" cy="20" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
+        <circle cx="150" cy="12" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
 
         {/* Person 9 */}
-        <circle cx="90" cy="140" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" />
-        <circle cx="90" cy="132" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" /> {/* Head */}
+        <circle cx="90" cy="140" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
+        <circle cx="90" cy="132" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
 
         {/* Person 10 */}
-        <circle cx="150" cy="140" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" />
-        <circle cx="150" cy="132" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-300 dark:opacity-100" /> {/* Head */}
+        <circle cx="150" cy="140" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
+        <circle cx="150" cy="132" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
 
-        {/* Connection Lines - Brighter in dark mode */}
-        <line x1="96" y1="80" x2="38" y2="80" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
-        <line x1="144" y1="80" x2="202" y2="80" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
-        <line x1="120" y1="56" x2="120" y2="28" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
-        <line x1="120" y1="104" x2="120" y2="132" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
+        {/* Connection Lines - Adjusted to match the new icon colors */}
+        <line x1="96" y1="80" x2="38" y2="80" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
+        <line x1="144" y1="80" x2="202" y2="80" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
+        <line x1="120" y1="56" x2="120" y2="28" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
+        <line x1="120" y1="104" x2="120" y2="132" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
 
-        <line x1="103" y1="63" x2="70" y2="46" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
-        <line x1="137" y1="63" x2="170" y2="46" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
-        <line x1="103" y1="97" x2="70" y2="114" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
-        <line x1="137" y1="97" x2="170" y2="114" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-200 dark:stroke-opacity-70" />
+        <line x1="103" y1="63" x2="70" y2="46" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
+        <line x1="137" y1="63" x2="170" y2="46" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
+        <line x1="103" y1="97" x2="70" y2="114" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
+        <line x1="137" y1="97" x2="170" y2="114" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
 
-        <line x1="90" y1="28" x2="65" y2="34" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-200 dark:stroke-opacity-50" />
-        <line x1="150" y1="28" x2="175" y2="34" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-200 dark:stroke-opacity-50" />
-        <line x1="90" y1="132" x2="65" y2="126" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-200 dark:stroke-opacity-50" />
-        <line x1="150" y1="132" x2="175" y2="126" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-200 dark:stroke-opacity-50" />
+        <line x1="90" y1="28" x2="65" y2="34" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
+        <line x1="150" y1="28" x2="175" y2="34" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
+        <line x1="90" y1="132" x2="65" y2="126" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
+        <line x1="150" y1="132" x2="175" y2="126" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
 
-        {/* Communication Animation - Modified for dark mode to remove blue ring */}
-        <g className="dark:opacity-0"> {/* Hide in dark mode */}
+        {/* Communication Animation - Hide in dark mode */}
+        <g className="dark:opacity-0">
             <circle cx="120" cy="80" r="30" fill="transparent" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="5,5" opacity="0.4">
                 <animate attributeName="r" values="30;45;30" dur="3s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite" />
             </circle>
         </g>
 
-        {/* Message Animations - Brighter in dark mode */}
+        {/* Message Animations */}
         <g>
             {/* Message 1 */}
             <rect x="120" y="80" width="10" height="6" rx="2" fill="#FFFFFF" opacity="0">
