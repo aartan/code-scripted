@@ -93,33 +93,70 @@ const NetworkingIllustration = () => (
         {/* Message Animations */}
         <g>
             {/* Message 1 */}
-            <rect x="120" y="80" width="10" height="6" rx="2" fill="#FFFFFF" opacity="0">
+            <rect
+                x="120"
+                y="80"
+                width="10"
+                height="6"
+                rx="2"
+                fill="#9CA3AF"
+                opacity="0"
+                className="dark:fill-white"
+            >
                 <animate attributeName="x" values="120;70;60" dur="2s" repeatCount="indefinite" />
                 <animate attributeName="y" values="80;50;40" dur="2s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite" />
             </rect>
 
             {/* Message 2 */}
-            <rect x="120" y="80" width="10" height="6" rx="2" fill="#FFFFFF" opacity="0">
+            <rect
+                x="120"
+                y="80"
+                width="10"
+                height="6"
+                rx="2"
+                fill="#9CA3AF"
+                opacity="0"
+                className="dark:fill-white"
+            >
                 <animate attributeName="x" values="120;170;180" dur="2.3s" repeatCount="indefinite" />
                 <animate attributeName="y" values="80;50;40" dur="2.3s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0;0.8;0" dur="2.3s" repeatCount="indefinite" />
             </rect>
 
             {/* Message 3 */}
-            <rect x="120" y="80" width="10" height="6" rx="2" fill="#FFFFFF" opacity="0">
+            <rect
+                x="120"
+                y="80"
+                width="10"
+                height="6"
+                rx="2"
+                fill="#9CA3AF"
+                opacity="0"
+                className="dark:fill-white"
+            >
                 <animate attributeName="x" values="120;70;60" dur="1.8s" repeatCount="indefinite" />
                 <animate attributeName="y" values="80;110;120" dur="1.8s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0;0.8;0" dur="1.8s" repeatCount="indefinite" />
             </rect>
 
             {/* Message 4 */}
-            <rect x="120" y="80" width="10" height="6" rx="2" fill="#FFFFFF" opacity="0">
+            <rect
+                x="120"
+                y="80"
+                width="10"
+                height="6"
+                rx="2"
+                fill="#9CA3AF"
+                opacity="0"
+                className="dark:fill-white"
+            >
                 <animate attributeName="x" values="120;170;180" dur="2.1s" repeatCount="indefinite" />
                 <animate attributeName="y" values="80;110;120" dur="2.1s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0;0.8;0" dur="2.1s" repeatCount="indefinite" />
             </rect>
         </g>
+
     </svg>
 );
 
