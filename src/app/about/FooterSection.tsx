@@ -164,8 +164,6 @@ export default function FooterSection({
                                           sectionRef,
                                           isMobile,
                                           isActive = false,
-                                          onBackToTop,
-                                          isTransitioning
                                       }: FooterSectionProps) {
     // Render the original footer content
     const renderFooterContent = () => (
@@ -233,87 +231,6 @@ export default function FooterSection({
             >
                 <NetworkingIllustration />
             </div>
-
-            {/* Back Button positioned between illustration and footer - only show when footer is active */}
-            {isActive && onBackToTop && (
-                <div
-                    className={`fixed left-1/2 transform -translate-x-1/2 z-20
-                        transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-0'}`}
-                    style={{
-                        bottom: `calc(${isActive ? "30vh" : "0"} + 60px)` // Position midway between illustration and footer
-                    }}
-                >
-                    <button
-                        onClick={onBackToTop}
-                        className="group flex items-center justify-center gap-2 px-5 py-2 text-base sm:text-lg transition-all"
-                        aria-label="Back to author section"
-                        disabled={isTransitioning}
-                        style={{
-                            transition: "all 0.3s ease",
-                            color: "currentColor",
-                        }}
-                        onMouseEnter={(e) => {
-                            const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
-                            const brightness = isDarkMode ?
-                                (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
-
-                            if (brightness < 128) {
-                                e.currentTarget.style.color = "#ffffff";
-                            } else {
-                                e.currentTarget.style.color = "#000000";
-                                e.currentTarget.style.fontWeight = "600";
-                                e.currentTarget.style.transform = "translateY(-2px)";
-                            }
-
-                            const svgElement = e.currentTarget.querySelector("svg");
-                            if (svgElement) {
-                                svgElement.style.transform = "translateY(-3px)";
-                                svgElement.style.opacity = "1";
-                                svgElement.classList.remove("animate-bounce");
-                            }
-                        }}
-                        onMouseLeave={(e) => {
-                            const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
-                            const brightness = isDarkMode ?
-                                (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
-
-                            if (brightness < 128) {
-                                e.currentTarget.style.color = "#a0a6b5";
-                            } else {
-                                e.currentTarget.style.color = "#555555";
-                                e.currentTarget.style.fontWeight = "normal";
-                                e.currentTarget.style.transform = "translateY(0)";
-                            }
-
-                            const svgElement = e.currentTarget.querySelector("svg");
-                            if (svgElement) {
-                                svgElement.style.transform = "translateY(0)";
-                                svgElement.style.opacity = "0.8";
-                                svgElement.classList.add("animate-bounce");
-                            }
-                        }}
-                    >
-                        <svg
-                            className="w-4 h-4 animate-bounce"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            style={{
-                                transition: "all 0.3s ease",
-                                opacity: "0.8",
-                            }}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7-7m0 0l-7 7m7-7v18"/>
-                        </svg>
-                        Go Back Up
-                    </button>
-                </div>
-            )}
 
             {/* Footer content */}
             <footer

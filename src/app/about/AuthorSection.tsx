@@ -15,7 +15,6 @@ export default function AuthorSection({
                                           sectionRef,
                                           isMobile,
                                           isActive = true,
-                                          onBackToTop,
                                           isTransitioning,
                                           onGoToFooter,
                                           previousSection
@@ -110,89 +109,6 @@ export default function AuthorSection({
 
                     {/* Navigation buttons container */}
                     <div className="flex justify-center gap-6 text-base sm:text-lg leading-relaxed mb-4">
-                        {/* Back to top button */}
-                        {onBackToTop && (
-                            <button
-                                onClick={onBackToTop}
-                                className="group flex items-center justify-center gap-2 px-5 py-2 transition-all"
-                                aria-label="Back to top of page"
-                                disabled={isTransitioning}
-                                style={{
-                                    transition: "all 0.3s ease",
-                                    color: "currentColor",
-                                }}
-                                onMouseEnter={(e) => {
-                                    // Detect if we're in dark mode or light mode by checking the background color
-                                    const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
-                                    const brightness = isDarkMode ?
-                                        (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
-
-                                    // Set appropriate hover color based on detected theme
-                                    if (brightness < 128) {
-                                        // Dark mode
-                                        e.currentTarget.style.color = "#ffffff";
-                                    } else {
-                                        // Light mode - more noticeable change but still black and white
-                                        e.currentTarget.style.color = "#000000";
-                                        e.currentTarget.style.fontWeight = "600"; // More bold for visibility
-                                        e.currentTarget.style.transform = "translateY(-2px)"; // Slight upward shift in light mode (for "back to top")
-                                    }
-
-                                    // Add null check for SVG element
-                                    const svgElement = e.currentTarget.querySelector("svg");
-                                    if (svgElement) {
-                                        svgElement.style.transform = "translateY(-3px)"; // Move arrow up for "back to top"
-                                        svgElement.style.opacity = "1";
-                                        svgElement.classList.remove("animate-bounce");
-                                    }
-                                }}
-                                onMouseLeave={(e) => {
-                                    // Return to the default color for the current theme
-                                    const isDarkMode = window.getComputedStyle(document.body).backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)/);
-                                    const brightness = isDarkMode ?
-                                        (parseInt(isDarkMode[1]) * 0.299 + parseInt(isDarkMode[2]) * 0.587 + parseInt(isDarkMode[3]) * 0.114) : 255;
-
-                                    if (brightness < 128) {
-                                        // Dark mode
-                                        e.currentTarget.style.color = "#a0a6b5";
-                                    } else {
-                                        // Light mode
-                                        e.currentTarget.style.color = "#555555"; // Slightly darker than before for better contrast
-                                        e.currentTarget.style.fontWeight = "normal";
-                                        e.currentTarget.style.transform = "translateY(0)";
-                                    }
-
-                                    // Add null check for SVG element
-                                    const svgElement = e.currentTarget.querySelector("svg");
-                                    if (svgElement) {
-                                        svgElement.style.transform = "translateY(0)";
-                                        svgElement.style.opacity = "0.8";
-                                        svgElement.classList.add("animate-bounce");
-                                    }
-                                }}
-                            >
-                                <svg
-                                    className="w-4 h-4 animate-bounce"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    style={{
-                                        transition: "all 0.3s ease",
-                                        opacity: "0.8",
-                                    }}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M19 9l-7-7m0 0l-7 7m7-7v18"
-                                    />
-                                </svg>
-                                Back To Top
-                            </button>
-                        )}
-
                         {/* Go to footer button */}
                         {onGoToFooter && (
                             <button
