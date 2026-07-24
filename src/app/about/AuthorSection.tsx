@@ -5,9 +5,8 @@ interface AuthorSectionProps {
     sectionRef: RefObject<HTMLDivElement>;
     isMobile: boolean;
     isActive?: boolean;
-    onBackToTop?: () => void;
     isTransitioning?: boolean;
-    onGoToFooter?: () => void; // Added prop for footer navigation
+    onGoToFooter?: (() => void) | undefined; // Changed to optional to handle hiding
     previousSection?: string; // Add this to track where we're coming from
 }
 
@@ -107,10 +106,9 @@ export default function AuthorSection({
                         {renderContent()}
                     </div>
 
-                    {/* Navigation buttons container */}
-                    <div className="flex justify-center gap-6 text-base sm:text-lg leading-relaxed mb-4">
-                        {/* Go to footer button */}
-                        {onGoToFooter && (
+                    {/* Navigation buttons container - only show if onGoToFooter is provided */}
+                    {onGoToFooter && (
+                        <div className="flex justify-center gap-6 text-base sm:text-lg leading-relaxed mb-4">
                             <button
                                 onClick={onGoToFooter}
                                 className="group flex items-center justify-center gap-2 px-5 py-2 transition-all"
@@ -190,8 +188,8 @@ export default function AuthorSection({
                                 </svg>
                                 Lets Connect
                             </button>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

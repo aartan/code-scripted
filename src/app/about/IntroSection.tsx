@@ -1,4 +1,3 @@
-// IntroSection.tsx
 import Image from "next/image";
 import { RefObject } from "react";
 
@@ -6,7 +5,7 @@ interface IntroSectionProps {
     sectionRef: RefObject<HTMLDivElement>;
     isMobile: boolean;
     isActive?: boolean;
-    onReadMore?: () => void;
+    onReadMore?: (() => void) | undefined; // Changed to optional to handle hiding
     isTransitioning?: boolean;
 }
 

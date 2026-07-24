@@ -14,6 +14,13 @@ export default function DesktopView() {
     // Track the previous section for directional animations
     const [previousSection, setPreviousSection] = useState<string>("intro");
 
+    const [isLoading, setIsLoading] = useState(true);
+    const [visitedSections, setVisitedSections] = useState<{[key: string]: boolean}>({
+        intro: true,
+        author: false,
+        footer: false
+    });
+
     // Navigation dot sections
     const sections = [
         { id: "intro", label: "CodeScripted" },
@@ -33,10 +40,42 @@ export default function DesktopView() {
         footer: footerRef
     });
 
+    // Load visited sections from localStorage after component mounts (client-side only)
+    useEffect(() => {
+        try {
+            const stored = localStorage.getItem('visitedSections');
+            if (stored) {
+                setVisitedSections(JSON.parse(stored));
+            }
+        } catch (error) {
+            console.error("Error accessing localStorage:", error);
+        } finally {
+            // Set loading to false regardless of whether localStorage was successfully accessed
+            setIsLoading(false);
+        }
+    }, []);
+
     // Update the previous section when active section changes
     useEffect(() => {
         if (!isTransitioning) {
             setPreviousSection(activeSection);
+
+            // Mark the current section as visited
+            setVisitedSections(prev => {
+                const updated = {
+                    ...prev,
+                    [activeSection]: true
+                };
+
+                // Save to localStorage
+                try {
+                    localStorage.setItem('visitedSections', JSON.stringify(updated));
+                } catch (error) {
+                    console.error("Error writing to localStorage:", error);
+                }
+
+                return updated;
+            });
         }
     }, [activeSection, isTransitioning]);
 
@@ -53,9 +92,38 @@ export default function DesktopView() {
         if (hash === "#author") {
             scrollToSection("author");
             setPreviousSection("intro"); // Initial direction assumption
+            setVisitedSections(prev => {
+                const updated = {
+                    ...prev,
+                    author: true
+                };
+
+                try {
+                    localStorage.setItem('visitedSections', JSON.stringify(updated));
+                } catch (error) {
+                    console.error("Error writing to localStorage:", error);
+                }
+
+                return updated;
+            });
         } else if (hash === "#footer") {
             scrollToSection("footer");
             setPreviousSection("author"); // Initial direction assumption
+            setVisitedSections(prev => {
+                const updated = {
+                    ...prev,
+                    author: true,
+                    footer: true
+                };
+
+                try {
+                    localStorage.setItem('visitedSections', JSON.stringify(updated));
+                } catch (error) {
+                    console.error("Error writing to localStorage:", error);
+                }
+
+                return updated;
+            });
         }
     }, []);
 
@@ -99,7 +167,7 @@ export default function DesktopView() {
                     sectionRef={introRef}
                     isMobile={false}
                     isActive={activeSection === "intro"}
-                    onReadMore={() => handleScrollToSection("author")}
+                    onReadMore={!isLoading && !visitedSections.author ? () => handleScrollToSection("author") : undefined}
                     isTransitioning={isTransitioning}
                 />
 
@@ -108,8 +176,7 @@ export default function DesktopView() {
                     sectionRef={authorRef}
                     isMobile={false}
                     isActive={activeSection === "author"}
-                    onBackToTop={() => handleScrollToSection("intro")}
-                    onGoToFooter={() => handleScrollToSection("footer")}
+                    onGoToFooter={!isLoading && !visitedSections.footer ? () => handleScrollToSection("footer") : undefined}
                     isTransitioning={isTransitioning}
                     previousSection={previousSection}
                 />
@@ -119,7 +186,6 @@ export default function DesktopView() {
                     sectionRef={footerRef}
                     isMobile={false}
                     isActive={activeSection === "footer"}
-                    onBackToTop={() => handleScrollToSection("author")}
                     isTransitioning={isTransitioning}
                 />
             </div>

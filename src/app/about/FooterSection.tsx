@@ -5,7 +5,6 @@ interface FooterSectionProps {
     sectionRef: RefObject<HTMLDivElement>;
     isMobile: boolean;
     isActive?: boolean;
-    onBackToTop?: () => void;
     isTransitioning?: boolean;
 }
 
