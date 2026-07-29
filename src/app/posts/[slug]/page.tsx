@@ -1,13 +1,14 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { CMS_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
-import type { Post } from "@/interfaces/post"; // Use type-only import
+import PostClientWrapper from "@/app/_components/post-client-wrapper";
+import type { Post } from "@/interfaces/post";
+
 
 type Params = {
   params: {
@@ -25,19 +26,21 @@ export default async function Post({ params }: Params) {
   const content = await markdownToHtml(post.content || "");
 
   return (
-    <main>
-      <Container>
-        <Header />
-        <article className="mb-32">
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-          />
-          <PostBody content={content} />
-        </article>
-      </Container>
-    </main>
+      <PostClientWrapper imageUrl={post.coverImage}>
+        <main>
+          <Container>
+            <Header />
+            <article className="mb-32">
+              <PostHeader
+                  title={post.title}
+                  coverImage={post.coverImage}
+                  date={post.date}
+              />
+              <PostBody content={content} />
+            </article>
+          </Container>
+        </main>
+      </PostClientWrapper>
   );
 }
 
@@ -59,7 +62,7 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export async function generateStaticParams() {
-  const { posts } = getAllPosts(); // Assuming getAllPosts() returns an object with a 'posts' array.
+  const { posts } = getAllPosts();
 
   return posts.map((post: Post) => ({
     slug: post.slug,
