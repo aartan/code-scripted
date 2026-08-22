@@ -48,12 +48,28 @@ export const ThemeSwitcher = () => {
 
   if (mode === null) return null;
 
+  // Get a readable description of the current mode
+  const getCurrentModeLabel = () => {
+    switch(mode) {
+      case "light": return "Light";
+      case "dark": return "Dark";
+      case "system": return "System";
+      default: return "Theme";
+    }
+  };
+
   return (
       <button
           suppressHydrationWarning
           className={styles.switch}
           data-mode={mode}
           onClick={handleModeSwitch}
-      />
+          aria-label={`Theme: ${getCurrentModeLabel()}. Click to change.`}
+          title={`Switch theme (currently: ${getCurrentModeLabel()})`}
+      >
+      <span className={styles.srOnly || "sr-only"}>
+        Change theme (currently: {getCurrentModeLabel()})
+      </span>
+      </button>
   );
 };
