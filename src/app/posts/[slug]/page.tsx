@@ -9,7 +9,6 @@ import { PostHeader } from "@/app/_components/post-header";
 import PostClientWrapper from "@/app/_components/post-client-wrapper";
 import type { Post } from "@/interfaces/post";
 
-
 type Params = {
   params: {
     slug: string;
@@ -30,7 +29,7 @@ export default async function Post({ params }: Params) {
         <main>
           <Container>
             <Header />
-            <article className="mb-32">
+            <article className="mb-32 max-w-4xl mx-auto">
               <PostHeader
                   title={post.title}
                   coverImage={post.coverImage}

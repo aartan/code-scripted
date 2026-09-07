@@ -44,7 +44,7 @@ export function HeroPost({
   const content = (
     <section className="card mb-8 md:mb-12 h-full">
       <div className="mb-8 md:mb-16">
-        <CoverImage title={title} src={coverImage} slug={slug} className="w-full object-cover rounded-md" />
+        <CoverImage title={title} src={coverImage} slug={slug} className="w-full object-cover rounded-md" priority={true}/>
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
