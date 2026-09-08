@@ -27,7 +27,7 @@ export function PostHeader({ title, coverImage, date }: Props) {
                     </div>
                 </div>
             </div>
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-3xl mx-auto">
                 <div className="block md:hidden mb-6"></div>
                 <div className="mb-6 text-lg">
                     <DateFormatter dateString={date} />
