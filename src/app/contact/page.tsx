@@ -150,7 +150,7 @@ export default function Contact() {
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="w-full inline-flex justify-center items-center px-6 py-3 border border-black text-white bg-black rounded-md hover:bg-white hover:text-black transition-colors duration-200"
+                                            className="w-full inline-flex justify-center items-center px-6 py-3 border border-black text-white bg-black rounded-md hover:opacity-70 transition-colors duration-200"
                                         >
                                             {isSubmitting ? (
                                                 <>
