@@ -103,7 +103,7 @@ export default function Contact() {
                                                     value={formData.name}
                                                     onChange={handleChange}
                                                     required
-                                                    className="text-black block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black"
+                                                    className="text-black block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:ring-opacity-30 focus:ring-2"
                                                     placeholder="Your name"
                                                 />
                                             </div>
@@ -121,7 +121,7 @@ export default function Contact() {
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     required
-                                                    className="text-black block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black"
+                                                    className="text-black block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:ring-opacity-30 focus:ring-2"
                                                     placeholder="Your email"
                                                 />
                                             </div>
@@ -140,7 +140,7 @@ export default function Contact() {
                                                 onChange={handleChange}
                                                 required
                                                 rows={6}
-                                                className="text-black block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black"
+                                                className="text-black block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:ring-opacity-30 focus:ring-2"
                                                 placeholder="What's on your mind?"
                                             />
                                         </div>
