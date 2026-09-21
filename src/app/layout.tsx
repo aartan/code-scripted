@@ -2,7 +2,7 @@ import Footer from "@/app/_components/footer";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import cn from "classnames";
-import { ThemeSwitcher } from './_components/theme-switcher';
+import { ThemeSwitcher } from "./_components/theme-switcher";
 
 import "./globals.css";
 
@@ -11,22 +11,25 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: `CodeScripted`,
   description: `Explore software development and technology insights on CodeScripted, a blog by Abdifatah Artan.`,
-  openGraph: {
-  },
+  openGraph: {},
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
+  children,
+}: Readonly<{
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-        <head>
-            <link rel="shortcut icon" href="../../public/favicon/favicon.ico" type="image/x-icon" />
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="shortcut icon"
+          href="../../public/favicon/favicon.ico"
+          type="image/x-icon"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
       (function() {
         const STORAGE_KEY = "codescripted-key";
         const mode = localStorage.getItem(STORAGE_KEY) || "system";
@@ -62,23 +65,19 @@ export default function RootLayout({
           }
         });
       })();
-    `
-                }}
-            />
-        </head>
-        <body
-            className={cn(
-                inter.className,
-                "dark:bg-slate-900 dark:text-slate-400"
-            )}
-        >
+    `,
+          }}
+        />
+      </head>
+      <body
+        className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
+      >
         <ThemeSwitcher />
-        <div className="min-h-screen flex flex-col" >
-            <div className="flex-grow">{children}</div>
-            <Footer />
+        <div className="min-h-screen flex flex-col">
+          <div className="flex-grow">{children}</div>
+          <Footer />
         </div>
-        </body>
-        </html>
-    );
+      </body>
+    </html>
+  );
 }
-

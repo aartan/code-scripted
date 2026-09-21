@@ -19,10 +19,12 @@ In this article, we'll break down static and dynamic routing, discuss their pros
 Static routing involves defining routes at build time. These routes are hardcoded and do not change based on user input or other parameters.
 
 ### Pros:
+
 - **Simplicity:** Easy to set up and manage.
 - **Performance:** Pages can be pre-rendered for faster load times.
 
 ### Cons:
+
 - **Limited Flexibility:** Not suitable for applications that require dynamic content.
 
 ## Dynamic Routing
@@ -30,10 +32,12 @@ Static routing involves defining routes at build time. These routes are hardcode
 Dynamic routing, on the other hand, generates routes on the fly based on user input or other data. This allows for more flexible and complex navigation.
 
 ### Pros:
+
 - **Flexibility:** Can handle a wide range of scenarios, such as user-specific content or complex URL structures.
 - **Scalability:** Easier to scale as the application grows.
 
 ### Cons:
+
 - **Complexity:** Requires more setup and management compared to static routing.
 - **Performance:** May introduce latency if not optimized properly.
 

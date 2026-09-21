@@ -19,11 +19,13 @@ In this guide, we’ll walk through the steps to deploy your Next.js application
 Vercel, the creators of Next.js, offers seamless integration for deploying your Next.js applications. Here’s how to get started:
 
 ### Step 1: Install Vercel CLI
+
 Install the Vercel CLI to manage your deployments from the command line:
 
 ```bash
 npm install -g vercel
 ```
+
 Step 2: Initialize Your Project
 In your project directory, run the following command to initialize your deployment:
 

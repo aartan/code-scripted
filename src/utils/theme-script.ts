@@ -2,7 +2,7 @@
 export const STORAGE_KEY = "codescripted-key";
 
 export function getThemeScript(): string {
-    return `
+  return `
     (() => {
       const [LIGHT, DARK, SYSTEM] = ["light", "dark", "system"];
       const modifyTransition = () => {

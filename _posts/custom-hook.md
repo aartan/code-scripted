@@ -33,56 +33,58 @@ Let’s create a custom hook called `useFetch`, which will handle data fetching 
 First, create a new file called `useFetch.js`:
 
 ```javascript
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 export default function useFetch(url) {
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url)
+        const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const result = await response.json()
-        setData(result)
+        const result = await response.json();
+        setData(result);
       } catch (err) {
-        setError(err)
+        setError(err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchData()
-  }, [url])
+    fetchData();
+  }, [url]);
 
-  return { data, loading, error }
+  return { data, loading, error };
 }
 ```
+
 ### Step 2: Use the Custom Hook in a Component
 
 Now that we have our useFetch hook, let’s use it in a component:
 
 ```javascript
-import useFetch from './useFetch'
+import useFetch from "./useFetch";
 
 export default function DataDisplay() {
-  const { data, loading, error } = useFetch('https://api.example.com/data')
+  const { data, loading, error } = useFetch("https://api.example.com/data");
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
       <h1>Data:</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
-  )
+  );
 }
 ```
+
 ### Step 3: Test and Reuse
 
 With the useFetch hook, you can now easily reuse this data-fetching logic across different components without duplicating code. If your application requires fetching data from multiple endpoints, you can simply call useFetch with the relevant URL.

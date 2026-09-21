@@ -30,10 +30,10 @@ Next.js makes it easy to implement SSR with the `getServerSideProps` function. H
 
 ```javascript
 export async function getServerSideProps(context) {
-  const res = await fetch('https://api.example.com/data')
-  const data = await res.json()
+  const res = await fetch("https://api.example.com/data");
+  const data = await res.json();
 
-  return { props: { data } }
+  return { props: { data } };
 }
 
 export default function Page({ data }) {
@@ -42,9 +42,10 @@ export default function Page({ data }) {
       <h1>{data.title}</h1>
       <p>{data.content}</p>
     </div>
-  )
+  );
 }
 ```
+
 In this example, getServerSideProps fetches data at request time and passes it to the page component for rendering.
 
 ## Conclusion

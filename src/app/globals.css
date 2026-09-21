@@ -8,7 +8,10 @@
   padding: 1.5rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transition:
+    box-shadow 0.5s ease-in-out,
+    background-color 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
 }
 
 /* Dark theme card styling */
@@ -21,9 +24,9 @@
 /* Hover effect for cards in dark mode */
 [data-mode="dark"] .card:hover {
   transform: translateY(-5px) scale(1.03); /* Slight lift and scale on hover */
-    background-color: rgb(13, 17, 23);
-    color: #94a3b8;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
+  background-color: rgb(13, 17, 23);
+  color: #94a3b8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
 /* Hover effect for cards in light mode */
@@ -41,7 +44,7 @@
   padding: 1rem;
   border-radius: 0.25rem; /* Slightly rounded corners */
   overflow-x: auto; /* Enable horizontal scrolling */
-  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for card effect */
   border: 1px solid #e1e4e8; /* Light border for card effect */
 }
@@ -53,7 +56,7 @@
   padding: 1rem;
   border-radius: 0.25rem; /* Slightly rounded corners */
   overflow-x: auto; /* Enable horizontal scrolling */
-  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Darker shadow for card effect */
   border: 1px solid #3b434a; /* Darker border for card effect */
 }
@@ -61,10 +64,10 @@
 /* Light mode styling for inline code */
 .markdown code {
   background-color: #f5f7fa; /* Light gray background */
-  color: #59260B; /* More subtle text color for better contrast */
+  color: #59260b; /* More subtle text color for better contrast */
   padding: 0.2rem 0.4rem; /* Add some padding */
   border-radius: 0.25rem; /* Slightly rounded corners */
-  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
 }
 
 /* Dark mode styling for inline code */
@@ -73,7 +76,7 @@
   color: #ffab70; /* Orange text color */
   padding: 0.2rem 0.4rem; /* Add some padding */
   border-radius: 0.25rem; /* Slightly rounded corners */
-  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
 }
 
 /* Hide scrollbars in WebKit-based browsers (Chrome, Safari) */
@@ -94,7 +97,10 @@
   background-color: #ffffff; /* White background */
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transition:
+    box-shadow 0.5s ease-in-out,
+    background-color 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
 }
 
 [data-mode="dark"] .post-preview-card {

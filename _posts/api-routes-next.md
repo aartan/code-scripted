@@ -31,9 +31,10 @@ Creating an API route in Next.js is simple. Just add a file under the `pages/api
 ```javascript
 // pages/api/hello.js
 export default function handler(req, res) {
-  res.status(200).json({ message: 'Hello, world!' })
+  res.status(200).json({ message: "Hello, world!" });
 }
 ```
+
 In this example, the /api/hello endpoint returns a JSON response with a simple message.
 
 Using API Routes in Your Application
@@ -41,11 +42,12 @@ You can call your API routes from any part of your application using fetch or ot
 
 ```javascript
 useEffect(() => {
-  fetch('/api/hello')
-    .then(response => response.json())
-    .then(data => console.log(data.message))
-}, [])
+  fetch("/api/hello")
+    .then((response) => response.json())
+    .then((data) => console.log(data.message));
+}, []);
 ```
+
 This code fetches data from the /api/hello route and logs the response to the console.
 
 ## Conclusion

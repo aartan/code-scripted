@@ -18,7 +18,9 @@ export default function SuccessAlert({ show, onClose }: SuccessAlertProps) {
   return (
     <div
       className={`fixed top-4 right-4 p-4 rounded shadow-lg text-white transition-all duration-500 ease-in-out ${
-        show ? "bg-green-500 transform translate-y-0 opacity-100" : "bg-transparent transform -translate-y-full opacity-0"
+        show
+          ? "bg-green-500 transform translate-y-0 opacity-100"
+          : "bg-transparent transform -translate-y-full opacity-0"
       }`}
     >
       <p>Your message has been sent!</p>

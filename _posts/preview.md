@@ -36,34 +36,38 @@ First, create an API route that enables preview mode. This route can be triggere
 // pages/api/preview.js
 export default function handler(req, res) {
   // Enable Preview Mode by setting the cookies
-  res.setPreviewData({})
+  res.setPreviewData({});
 
   // Redirect to the path specified in the query parameters
-  const { slug = '' } = req.query
-  res.redirect(`/${slug}`)
+  const { slug = "" } = req.query;
+  res.redirect(`/${slug}`);
 }
 ```
+
 ### Step 2: Modify getStaticProps
 
 In your page component, modify getStaticProps to check if the page is in preview mode. If it is, fetch the draft content instead of the published content.
+
 ```javascript
 export async function getStaticProps(context) {
-  const { preview } = context
+  const { preview } = context;
 
   // Fetch draft content if in preview mode, otherwise fetch published content
-  const res = await fetch(`https://example.com/api/content?preview=${preview}`)
-  const data = await res.json()
+  const res = await fetch(`https://example.com/api/content?preview=${preview}`);
+  const data = await res.json();
 
   return {
     props: {
       content: data,
     },
-  }
+  };
 }
 ```
-### Step 3:  Render the Page in Preview Mode
+
+### Step 3: Render the Page in Preview Mode
 
 Finally, ensure that your page renders the draft content when in preview mode.
+
 ```javascript
 export default function Post({ content }) {
   return (
@@ -71,7 +75,7 @@ export default function Post({ content }) {
       <h1>{content.title}</h1>
       <p>{content.body}</p>
     </div>
-  )
+  );
 }
 ```
 

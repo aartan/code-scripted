@@ -1,252 +1,287 @@
-import { RefObject } from "react";
+import { RefObject, useState, MouseEvent } from "react";
 import Container from "@/app/_components/container";
 
 interface FooterSectionProps {
-    sectionRef: RefObject<HTMLDivElement>;
-    isMobile: boolean;
-    isActive?: boolean;
-    isTransitioning?: boolean;
+  sectionRef: RefObject<HTMLDivElement>;
+  isMobile: boolean;
+  isActive?: boolean;
+  isTransitioning?: boolean;
+  onNavigate?: (section: string) => void; // Add this navigation prop
 }
 
-// People Networking Illustration Component with Dark Mode Enhancements
-const NetworkingIllustration = () => (
-    <svg
-        width="500"
-        height="500"
-        viewBox="0 0 240 160"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="max-w-full h-auto"
-    >
-        {/* Central Person */}
-        <circle cx="120" cy="80" r="18" fill="#3B82F6" className="dark:fill-blue-400" />
-        <circle cx="120" cy="80" r="22" stroke="#3B82F6" strokeWidth="2" strokeOpacity="0.5" className="dark:stroke-opacity-0" />
-        <circle cx="120" cy="62" r="8" fill="#3B82F6" className="dark:fill-blue-400" /> {/* Head */}
-
-        {/* Connected People - Enhanced for dark mode with softer colors */}
-        {/* Person 1 */}
-        <circle cx="60" cy="40" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="60" cy="28" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
-
-        {/* Person 2 */}
-        <circle cx="180" cy="40" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="180" cy="28" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
-
-        {/* Person 3 */}
-        <circle cx="60" cy="120" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="60" cy="108" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
-
-        {/* Person 4 */}
-        <circle cx="180" cy="120" r="12" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" />
-        <circle cx="180" cy="108" r="6" fill="#000000" className="dark:fill-gray-400 dark:stroke-gray-300 dark:stroke-1 dark:stroke-opacity-30" /> {/* Head */}
-
-        {/* Small people - Enhanced for dark mode with softer colors */}
-        {/* Person 5 */}
-        <circle cx="30" cy="80" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
-        <circle cx="30" cy="72" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
-
-        {/* Person 6 */}
-        <circle cx="210" cy="80" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
-        <circle cx="210" cy="72" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
-
-        {/* Person 7 */}
-        <circle cx="90" cy="20" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
-        <circle cx="90" cy="12" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
-
-        {/* Person 8 */}
-        <circle cx="150" cy="20" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
-        <circle cx="150" cy="12" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
-
-        {/* Person 9 */}
-        <circle cx="90" cy="140" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
-        <circle cx="90" cy="132" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
-
-        {/* Person 10 */}
-        <circle cx="150" cy="140" r="8" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" />
-        <circle cx="150" cy="132" r="4" fill="#000000" opacity="0.7" className="dark:fill-gray-500 dark:opacity-100" /> {/* Head */}
-
-        {/* Connection Lines - Adjusted to match the new icon colors */}
-        <line x1="96" y1="80" x2="38" y2="80" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-        <line x1="144" y1="80" x2="202" y2="80" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-        <line x1="120" y1="56" x2="120" y2="28" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-        <line x1="120" y1="104" x2="120" y2="132" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-
-        <line x1="103" y1="63" x2="70" y2="46" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-        <line x1="137" y1="63" x2="170" y2="46" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-        <line x1="103" y1="97" x2="70" y2="114" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-        <line x1="137" y1="97" x2="170" y2="114" stroke="#000000" strokeWidth="2" strokeOpacity="0.3" className="dark:stroke-gray-400 dark:stroke-opacity-70" />
-
-        <line x1="90" y1="28" x2="65" y2="34" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
-        <line x1="150" y1="28" x2="175" y2="34" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
-        <line x1="90" y1="132" x2="65" y2="126" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
-        <line x1="150" y1="132" x2="175" y2="126" stroke="#000000" strokeWidth="1" strokeOpacity="0.2" className="dark:stroke-gray-400 dark:stroke-opacity-50" />
-
-        {/* Communication Animation - Hide in dark mode */}
-        <g className="dark:opacity-0">
-            <circle cx="120" cy="80" r="30" fill="transparent" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="5,5" opacity="0.4">
-                <animate attributeName="r" values="30;45;30" dur="3s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite" />
-            </circle>
-        </g>
-
-        {/* Message Animations */}
-        <g>
-            {/* Message 1 */}
-            <rect
-                x="120"
-                y="80"
-                width="10"
-                height="6"
-                rx="2"
-                fill="#9CA3AF"
-                opacity="0"
-                className="dark:fill-white"
-            >
-                <animate attributeName="x" values="120;70;60" dur="2s" repeatCount="indefinite" />
-                <animate attributeName="y" values="80;50;40" dur="2s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite" />
-            </rect>
-
-            {/* Message 2 */}
-            <rect
-                x="120"
-                y="80"
-                width="10"
-                height="6"
-                rx="2"
-                fill="#9CA3AF"
-                opacity="0"
-                className="dark:fill-white"
-            >
-                <animate attributeName="x" values="120;170;180" dur="2.3s" repeatCount="indefinite" />
-                <animate attributeName="y" values="80;50;40" dur="2.3s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0;0.8;0" dur="2.3s" repeatCount="indefinite" />
-            </rect>
-
-            {/* Message 3 */}
-            <rect
-                x="120"
-                y="80"
-                width="10"
-                height="6"
-                rx="2"
-                fill="#9CA3AF"
-                opacity="0"
-                className="dark:fill-white"
-            >
-                <animate attributeName="x" values="120;70;60" dur="1.8s" repeatCount="indefinite" />
-                <animate attributeName="y" values="80;110;120" dur="1.8s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0;0.8;0" dur="1.8s" repeatCount="indefinite" />
-            </rect>
-
-            {/* Message 4 */}
-            <rect
-                x="120"
-                y="80"
-                width="10"
-                height="6"
-                rx="2"
-                fill="#9CA3AF"
-                opacity="0"
-                className="dark:fill-white"
-            >
-                <animate attributeName="x" values="120;170;180" dur="2.1s" repeatCount="indefinite" />
-                <animate attributeName="y" values="80;110;120" dur="2.1s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0;0.8;0" dur="2.1s" repeatCount="indefinite" />
-            </rect>
-        </g>
-
-    </svg>
-);
-
 export default function FooterSection({
-                                          sectionRef,
-                                          isMobile,
-                                          isActive = false,
-                                      }: FooterSectionProps) {
-    // Render the original footer content
-    const renderFooterContent = () => (
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-            <h3 className="text-4xl lg:text-[2.5rem] font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-                Stay Connected.
-            </h3>
-            <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-16 lg:w-1/2">
-                <a
-                    href="/"
-                    className="flex items-center justify-center md:min-h-[75px] rounded-md mx-3 bg-black hover:opacity-70 border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
-                >
-                    Home
-                </a>
-                <a
-                    href="/contact"
-                    className="rounded-md mx-3 bg-black hover:opacity-70 text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-opacity mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
-                >
-                    Get in Touch
-                </a>
-                <a
-                    target="_blank"
-                    href="https://twitter.com/abdifatah_artan"
-                    className="rounded-md mx-3 bg-black hover:opacity-70 text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-opacity mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
-                >
-                    Follow on Twitter
-                </a>
-                <a
-                    target="_blank"
-                    href="https://www.linkedin.com/in/abdifatah-artan"
-                    className="rounded-md mx-3 bg-blue-600 hover:opacity-70 text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-opacity mb-6 lg:mb-0 w-full lg:w-auto text-center min-w-[160px]"
-                >
-                    Connect on LinkedIn
-                </a>
-            </div>
-        </div>
-    );
+  sectionRef,
+  isActive = false,
+  onNavigate, // Accept the navigation handler
+}: FooterSectionProps) {
+  const [hoverStates, setHoverStates] = useState({
+    home: false,
+    contact: false,
+    twitter: false,
+    linkedin: false,
+    codescripted: false, // Added separate state for CodeScripted button
+    author: false, // Added separate state for Author button
+  });
 
-    // Mobile version
-    if (isMobile) {
-        return (
-            <footer
-                ref={sectionRef}
-                id="footer"
-                className="w-full bg-neutral-50 border-t border-neutral-200 dark:bg-slate-800"
-            >
-                <Container>
-                    {renderFooterContent()}
-                </Container>
-            </footer>
-        );
+  // Handle hover state for interactive elements
+  const handleMouseEnter = (key: string) => {
+    setHoverStates((prev) => ({ ...prev, [key]: true }));
+  };
+
+  const handleMouseLeave = (key: string) => {
+    setHoverStates((prev) => ({ ...prev, [key]: false }));
+  };
+
+  // Handler for internal navigation links
+  const handleInternalLink = (
+    e: MouseEvent<HTMLAnchorElement>,
+    section: string,
+  ) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(section);
     }
+    // If onNavigate is not provided, behave as a normal link
+  };
 
-    // Desktop version with animations and button just above footer
-    return (
-        <>
-            {/* Networking illustration - placed in the white space above the footer */}
-            <div
-                className={`fixed left-1/2 transform -translate-x-1/2 z-10
-                    transition-all duration-700 ${isActive ? 'opacity-100' : 'opacity-0'}`}
-                style={{
-                    bottom: `calc(${isActive ? "30vh" : "0"} + 100px)`,
-                    pointerEvents: isActive ? 'auto' : 'none'
-                }}
-            >
-                <NetworkingIllustration />
-            </div>
+  // Render the enhanced footer content with animations
+  const renderEnhancedFooter = () => (
+    <div className="py-16 lg:py-20">
+      <div className="flex flex-col lg:flex-row items-center justify-between mb-8 lg:mb-12">
+        <h3
+          className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-8 lg:mb-0 lg:pr-4 lg:w-1/2
+                               relative z-10 group"
+        >
+          <span>Stay Connected</span>
+          <span>.</span>
+          <span
+            className="absolute -bottom-2 left-0 w-0 h-1 bg-black dark:bg-white dark:bg-opacity-30 transition-all duration-300
+                                    group-hover:w-full lg:group-hover:w-3/4 opacity-0 group-hover:opacity-30"
+          ></span>
+        </h3>
 
-            {/* Footer content */}
-            <footer
-                ref={sectionRef}
-                className={`fixed bottom-0 left-0 right-0 w-full
-                    bg-neutral-50 border-t border-neutral-200 dark:bg-slate-800
-                    transition-all duration-1000 ease-in-out
-                    ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}
-                style={{
-                    minHeight: "30vh",
-                    zIndex: isActive ? 10 : -1,
-                }}
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+          <div className="flex flex-wrap gap-4 justify-center">
+            {/* Social Icons with animations */}
+            <a
+              href="https://twitter.com/abdifatah_artan"
+              target="_blank"
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-black text-white
+                                    hover:bg-gray-900 transition-all duration-300 transform hover:scale-110"
+              onMouseEnter={() => handleMouseEnter("twitter")}
+              onMouseLeave={() => handleMouseLeave("twitter")}
             >
-                <Container>
-                    {renderFooterContent()}
-                </Container>
-            </footer>
-        </>
-    );
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/abdifatah-artan"
+              target="_blank"
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white
+                                    hover:bg-blue-700 transition-all duration-300 transform hover:scale-110"
+              onMouseEnter={() => handleMouseEnter("linkedin")}
+              onMouseLeave={() => handleMouseLeave("linkedin")}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a
+              href="mailto:contact@example.com"
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white
+                                    hover:bg-gray-900 transition-all duration-300 transform hover:scale-110"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Animated Link Buttons - updated with navigation handlers */}
+        <a
+          href="/"
+          className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
+                             flex items-center justify-center h-16 transition-all duration-300
+                             hover:opacity-70 border-black`}
+          onMouseEnter={() => handleMouseEnter("home")}
+          onMouseLeave={() => handleMouseLeave("home")}
+        >
+          <span className="relative z-10 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Home
+          </span>
+          <span
+            className={`absolute bottom-0 left-0 h-1 bg-white opacity-30 transition-all duration-500 ease-out 
+                                    ${hoverStates.home ? "w-full" : "w-0"}`}
+          ></span>
+        </a>
+        <a
+          href="/about#intro"
+          onClick={(e) => handleInternalLink(e, "intro")}
+          className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
+                             flex items-center justify-center h-16 transition-all duration-300
+                             hover:opacity-70`}
+          onMouseEnter={() => handleMouseEnter("codescripted")}
+          onMouseLeave={() => handleMouseLeave("codescripted")}
+        >
+          <span className="relative z-10 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            CodeScripted
+          </span>
+          <span
+            className={`absolute bottom-0 left-0 h-1 bg-white opacity-30 transition-all duration-500 ease-out 
+                                    ${hoverStates.codescripted ? "w-full" : "w-0"}`}
+          ></span>
+        </a>
+
+        <a
+          href="/about#author"
+          onClick={(e) => handleInternalLink(e, "author")}
+          className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
+                             flex items-center justify-center h-16 transition-all duration-300
+                             hover:opacity-70`}
+          onMouseEnter={() => handleMouseEnter("author")}
+          onMouseLeave={() => handleMouseLeave("author")}
+        >
+          <span className="relative z-10 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Author
+          </span>
+          <span
+            className={`absolute bottom-0 left-0 h-1 bg-white opacity-30 transition-all duration-500 ease-out 
+                                    ${hoverStates.author ? "w-full" : "w-0"}`}
+          ></span>
+        </a>
+        <a
+          href="/contact"
+          className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
+                             flex items-center justify-center h-16 transition-all duration-300
+                             hover:opacity-70`}
+          onMouseEnter={() => handleMouseEnter("contact")}
+          onMouseLeave={() => handleMouseLeave("contact")}
+        >
+          <span className="relative z-10 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            Get in Touch
+          </span>
+          <span
+            className={`absolute bottom-0 left-0 h-1 bg-white opacity-30 transition-all duration-500 ease-out 
+                                    ${hoverStates.contact ? "w-full" : "w-0"}`}
+          ></span>
+        </a>
+      </div>
+
+      {/* Bottom Section with Newsletter */}
+      <div className="mt-6 pt-8 border-gray-200 dark:border-gray-700">
+        <div className="flex justify-center text-center">
+          <div className="mb-6 md:mb-0">
+            <p>
+              © {new Date().getFullYear()} CodeScripted. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Desktop version with animations
+  return (
+    <footer
+      ref={sectionRef}
+      className={`border-t fixed bottom-0 left-0 right-0 w-full
+                bg-neutral-50 border-neutral-200 dark:bg-slate-800
+                transition-all duration-700 ease-in-out
+                ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}
+      style={{
+        zIndex: isActive ? 10 : -1,
+      }}
+    >
+      <Container>{renderEnhancedFooter()}</Container>
+    </footer>
+  );
 }

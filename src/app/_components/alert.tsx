@@ -14,7 +14,8 @@ const Alert = ({ type }: Props) => {
     case "maintenance":
       message = (
         <>
-          Scheduled maintenance on Aug 28th from 2:00 AM to 4:00 AM UTC. The site may be temporarily unavailable during this time.
+          Scheduled maintenance on Aug 28th from 2:00 AM to 4:00 AM UTC. The
+          site may be temporarily unavailable during this time.
         </>
       );
       break;

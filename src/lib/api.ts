@@ -40,7 +40,7 @@ export function getAllPosts({
   page = 1,
   postsPerPageFirst = 4,
   postsPerPageSubsequent = 6,
-  searchQuery = '', // Default to an empty string
+  searchQuery = "", // Default to an empty string
 }: GetAllPostsParams = {}): GetAllPostsResult {
   const slugs = getPostSlugs();
   let posts = slugs
@@ -49,9 +49,10 @@ export function getAllPosts({
 
   if (searchQuery) {
     // Filter posts based on the search query
-    posts = posts.filter((post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+    posts = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   }
 
@@ -61,7 +62,8 @@ export function getAllPosts({
   if (page === 1) {
     paginatedPosts = posts.slice(0, postsPerPageFirst + 1);
   } else {
-    const startIndex = postsPerPageFirst + (page - 2) * postsPerPageSubsequent + 1;
+    const startIndex =
+      postsPerPageFirst + (page - 2) * postsPerPageSubsequent + 1;
     const endIndex = startIndex + postsPerPageSubsequent;
     paginatedPosts = posts.slice(startIndex, endIndex);
   }
@@ -71,4 +73,3 @@ export function getAllPosts({
     totalPosts,
   };
 }
-

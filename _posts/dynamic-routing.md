@@ -17,7 +17,7 @@ Dynamic routing enables applications to handle a wide variety of scenarios, such
 ## Advantages of Dynamic Routing
 
 1. **Scalability:** As your application grows, dynamic routing simplifies the process of adding new content or features without the need to manually update the routing logic.
-  
+
 2. **User Experience:** By generating content dynamically based on user interaction, you can provide a more tailored experience, which can lead to higher engagement and satisfaction.
 
 3. **Performance Optimization:** When used alongside static generation, dynamic routing can ensure that frequently accessed pages are fast and responsive, while still providing the flexibility to fetch and display real-time data.

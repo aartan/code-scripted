@@ -29,7 +29,7 @@ Optimizing images is essential for improving the loading speed of your website, 
 Next.js makes image optimization easy with the `next/image` component, which automatically optimizes images on-demand. Here’s an example of how to use it:
 
 ```javascript
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -42,9 +42,10 @@ export default function HomePage() {
         height={300}
       />
     </div>
-  )
+  );
 }
 ```
+
 ## Features of next/image:
 
 Automatic Resizing: Images are automatically resized to fit different screen sizes.

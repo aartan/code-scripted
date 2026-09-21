@@ -11,7 +11,8 @@ const modes: ColorSchemePreference[] = ["light", "dark", "system"];
 // Make sure this matches exactly what's in your layout.tsx script
 const updateDOMTheme = (mode: ColorSchemePreference) => {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const resolvedMode = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
+  const resolvedMode =
+    mode === "system" ? (prefersDark ? "dark" : "light") : mode;
 
   if (resolvedMode === "dark") {
     document.documentElement.classList.add("dark");
@@ -29,7 +30,8 @@ export const ThemeSwitcher = () => {
 
   useEffect(() => {
     // Initialize mode from localStorage or default to "light"
-    const storedMode = (localStorage.getItem(STORAGE_KEY) as ColorSchemePreference) || "light";
+    const storedMode =
+      (localStorage.getItem(STORAGE_KEY) as ColorSchemePreference) || "light";
     setMode(storedMode);
   }, []);
 
@@ -50,26 +52,30 @@ export const ThemeSwitcher = () => {
 
   // Get a readable description of the current mode
   const getCurrentModeLabel = () => {
-    switch(mode) {
-      case "light": return "Light";
-      case "dark": return "Dark";
-      case "system": return "System";
-      default: return "Theme";
+    switch (mode) {
+      case "light":
+        return "Light";
+      case "dark":
+        return "Dark";
+      case "system":
+        return "System";
+      default:
+        return "Theme";
     }
   };
 
   return (
-      <button
-          suppressHydrationWarning
-          className={styles.switch}
-          data-mode={mode}
-          onClick={handleModeSwitch}
-          aria-label={`Theme: ${getCurrentModeLabel()}. Click to change.`}
-          title={`Switch theme (currently: ${getCurrentModeLabel()})`}
-      >
+    <button
+      suppressHydrationWarning
+      className={styles.switch}
+      data-mode={mode}
+      onClick={handleModeSwitch}
+      aria-label={`Theme: ${getCurrentModeLabel()}. Click to change.`}
+      title={`Switch theme (currently: ${getCurrentModeLabel()})`}
+    >
       <span className={styles.srOnly || "sr-only"}>
         Change theme (currently: {getCurrentModeLabel()})
       </span>
-      </button>
+    </button>
   );
 };

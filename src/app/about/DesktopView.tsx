@@ -6,189 +6,205 @@ import NavigationDots from "./NavigationDots";
 import useFullPageScroll from "./hooks/useFullPageScroll";
 
 export default function DesktopView() {
-    // Refs for each section
-    const introRef = useRef<HTMLDivElement>(null);
-    const authorRef = useRef<HTMLDivElement>(null);
-    const footerRef = useRef<HTMLDivElement>(null);
+  // Refs for each section
+  const introRef = useRef<HTMLDivElement>(null);
+  const authorRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
-    // Track the previous section for directional animations
-    const [previousSection, setPreviousSection] = useState<string>("intro");
+  // Track the previous section for directional animations
+  const [previousSection, setPreviousSection] = useState<string>("intro");
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [visitedSections, setVisitedSections] = useState<{[key: string]: boolean}>({
-        intro: true,
-        author: false,
-        footer: false
+  const [isLoading, setIsLoading] = useState(true);
+  const [visitedSections, setVisitedSections] = useState<{
+    [key: string]: boolean;
+  }>({
+    intro: true,
+    author: false,
+    footer: false,
+  });
+
+  // Navigation dot sections
+  const sections = [
+    { id: "intro", label: "CodeScripted" },
+    { id: "author", label: "Author" },
+    { id: "footer", label: "Lets Connect" },
+  ];
+
+  // Use our custom hook for fullpage scrolling
+  const { activeSection, isTransitioning, containerRef, scrollToSection } =
+    useFullPageScroll("intro", {
+      intro: introRef,
+      author: authorRef,
+      footer: footerRef,
     });
 
-    // Navigation dot sections
-    const sections = [
-        { id: "intro", label: "CodeScripted" },
-        { id: "author", label: "Author" },
-        { id: "footer", label: "Lets Connect" }
-    ];
+  // Load visited sections from localStorage after component mounts (client-side only)
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("visitedSections");
+      if (stored) {
+        setVisitedSections(JSON.parse(stored));
+      }
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
+    } finally {
+      // Set loading to false regardless of whether localStorage was successfully accessed
+      setIsLoading(false);
+    }
+  }, []);
 
-    // Use our custom hook for fullpage scrolling
-    const {
-        activeSection,
-        isTransitioning,
-        containerRef,
-        scrollToSection
-    } = useFullPageScroll("intro", {
-        intro: introRef,
-        author: authorRef,
-        footer: footerRef
-    });
+  // Update the previous section when active section changes
+  useEffect(() => {
+    if (!isTransitioning) {
+      setPreviousSection(activeSection);
 
-    // Load visited sections from localStorage after component mounts (client-side only)
-    useEffect(() => {
+      // Mark the current section as visited
+      setVisitedSections((prev) => {
+        const updated = {
+          ...prev,
+          [activeSection]: true,
+        };
+
+        // Save to localStorage
         try {
-            const stored = localStorage.getItem('visitedSections');
-            if (stored) {
-                setVisitedSections(JSON.parse(stored));
-            }
+          localStorage.setItem("visitedSections", JSON.stringify(updated));
         } catch (error) {
-            console.error("Error accessing localStorage:", error);
-        } finally {
-            // Set loading to false regardless of whether localStorage was successfully accessed
-            setIsLoading(false);
+          console.error("Error writing to localStorage:", error);
         }
-    }, []);
 
-    // Update the previous section when active section changes
-    useEffect(() => {
-        if (!isTransitioning) {
-            setPreviousSection(activeSection);
+        return updated;
+      });
+    }
+  }, [activeSection, isTransitioning]);
 
-            // Mark the current section as visited
-            setVisitedSections(prev => {
-                const updated = {
-                    ...prev,
-                    [activeSection]: true
-                };
+  // Custom scroll handler to track direction
+  const handleScrollToSection = (section: string) => {
+    setPreviousSection(activeSection);
+    scrollToSection(section);
+  };
 
-                // Save to localStorage
-                try {
-                    localStorage.setItem('visitedSections', JSON.stringify(updated));
-                } catch (error) {
-                    console.error("Error writing to localStorage:", error);
-                }
+  // Navigation handler for links in the footer
+  const handleNavigation = (section: string) => {
+    if (sections.find((s) => s.id === section)) {
+      handleScrollToSection(section);
+    }
+  };
 
-                return updated;
-            });
+  // Handle initial page load with hash
+  useEffect(() => {
+    const hash = window.location.hash;
+
+    if (hash === "#author") {
+      scrollToSection("author");
+      setPreviousSection("intro"); // Initial direction assumption
+      setVisitedSections((prev) => {
+        const updated = {
+          ...prev,
+          author: true,
+        };
+
+        try {
+          localStorage.setItem("visitedSections", JSON.stringify(updated));
+        } catch (error) {
+          console.error("Error writing to localStorage:", error);
         }
-    }, [activeSection, isTransitioning]);
 
-    // Custom scroll handler to track direction
-    const handleScrollToSection = (section: string) => {
-        setPreviousSection(activeSection);
-        scrollToSection(section);
+        return updated;
+      });
+    } else if (hash === "#footer") {
+      scrollToSection("footer");
+      setPreviousSection("author"); // Initial direction assumption
+      setVisitedSections((prev) => {
+        const updated = {
+          ...prev,
+          author: true,
+          footer: true,
+        };
+
+        try {
+          localStorage.setItem("visitedSections", JSON.stringify(updated));
+        } catch (error) {
+          console.error("Error writing to localStorage:", error);
+        }
+
+        return updated;
+      });
+    }
+  }, []);
+
+  // Prevent default touchmove to avoid unintended navigation
+  useEffect(() => {
+    const preventDefaultTouch = (e: TouchEvent) => {
+      // Still let the hook handle the touch
+      if (e.target && (e.target as HTMLElement).tagName === "BUTTON") {
+        // Allow buttons to receive touch events normally
+        return;
+      }
+      // Prevent default for non-button elements
+      e.preventDefault();
     };
 
-    // Handle initial page load with hash
-    useEffect(() => {
-        const hash = window.location.hash;
+    document.addEventListener("touchmove", preventDefaultTouch, {
+      passive: false,
+    });
 
-        if (hash === "#author") {
-            scrollToSection("author");
-            setPreviousSection("intro"); // Initial direction assumption
-            setVisitedSections(prev => {
-                const updated = {
-                    ...prev,
-                    author: true
-                };
+    return () => {
+      document.removeEventListener("touchmove", preventDefaultTouch);
+    };
+  }, []);
 
-                try {
-                    localStorage.setItem('visitedSections', JSON.stringify(updated));
-                } catch (error) {
-                    console.error("Error writing to localStorage:", error);
-                }
+  return (
+    <div
+      ref={containerRef}
+      className="h-screen w-full overflow-hidden relative"
+      style={{ touchAction: "none" }}
+    >
+      {/* Side navigation dots */}
+      <NavigationDots
+        sections={sections}
+        activeSection={activeSection}
+        onSectionChange={handleScrollToSection}
+        isTransitioning={isTransitioning}
+      />
 
-                return updated;
-            });
-        } else if (hash === "#footer") {
-            scrollToSection("footer");
-            setPreviousSection("author"); // Initial direction assumption
-            setVisitedSections(prev => {
-                const updated = {
-                    ...prev,
-                    author: true,
-                    footer: true
-                };
+      {/* Sections Container with transition effect */}
+      <div className="relative h-full">
+        {/* Introduction Section */}
+        <IntroSection
+          sectionRef={introRef}
+          isMobile={false}
+          isActive={activeSection === "intro"}
+          onReadMore={
+            !isLoading && !visitedSections.author
+              ? () => handleScrollToSection("author")
+              : undefined
+          }
+          isTransitioning={isTransitioning}
+        />
 
-                try {
-                    localStorage.setItem('visitedSections', JSON.stringify(updated));
-                } catch (error) {
-                    console.error("Error writing to localStorage:", error);
-                }
+        {/* Author Section */}
+        <AuthorSection
+          sectionRef={authorRef}
+          isMobile={false}
+          isActive={activeSection === "author"}
+          onGoToFooter={
+            !isLoading && !visitedSections.footer
+              ? () => handleScrollToSection("footer")
+              : undefined
+          }
+          isTransitioning={isTransitioning}
+          previousSection={previousSection}
+        />
 
-                return updated;
-            });
-        }
-    }, []);
-
-    // Prevent default touchmove to avoid unintended navigation
-    useEffect(() => {
-        const preventDefaultTouch = (e: TouchEvent) => {
-            // Still let the hook handle the touch
-            if (e.target && (e.target as HTMLElement).tagName === 'BUTTON') {
-                // Allow buttons to receive touch events normally
-                return;
-            }
-            // Prevent default for non-button elements
-            e.preventDefault();
-        };
-
-        document.addEventListener('touchmove', preventDefaultTouch, { passive: false });
-
-        return () => {
-            document.removeEventListener('touchmove', preventDefaultTouch);
-        };
-    }, []);
-
-    return (
-        <div
-            ref={containerRef}
-            className="h-screen w-full overflow-hidden relative"
-            style={{ touchAction: 'none' }}
-        >
-            {/* Side navigation dots */}
-            <NavigationDots
-                sections={sections}
-                activeSection={activeSection}
-                onSectionChange={handleScrollToSection}
-                isTransitioning={isTransitioning}
-            />
-
-            {/* Sections Container with transition effect */}
-            <div className="relative h-full">
-                {/* Introduction Section */}
-                <IntroSection
-                    sectionRef={introRef}
-                    isMobile={false}
-                    isActive={activeSection === "intro"}
-                    onReadMore={!isLoading && !visitedSections.author ? () => handleScrollToSection("author") : undefined}
-                    isTransitioning={isTransitioning}
-                />
-
-                {/* Author Section */}
-                <AuthorSection
-                    sectionRef={authorRef}
-                    isMobile={false}
-                    isActive={activeSection === "author"}
-                    onGoToFooter={!isLoading && !visitedSections.footer ? () => handleScrollToSection("footer") : undefined}
-                    isTransitioning={isTransitioning}
-                    previousSection={previousSection}
-                />
-
-                {/* Footer Section */}
-                <FooterSection
-                    sectionRef={footerRef}
-                    isMobile={false}
-                    isActive={activeSection === "footer"}
-                    isTransitioning={isTransitioning}
-                />
-            </div>
-        </div>
-    );
+        {/* Footer Section - pass the navigation handler */}
+        <FooterSection
+          sectionRef={footerRef}
+          isMobile={false}
+          isActive={activeSection === "footer"}
+          isTransitioning={isTransitioning}
+          onNavigate={handleNavigation}
+        />
+      </div>
+    </div>
+  );
 }

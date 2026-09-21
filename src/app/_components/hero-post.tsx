@@ -1,6 +1,5 @@
 "use client";
 
-import Avatar from "@/app/_components/avatar";
 import CoverImage from "@/app/_components/cover-image";
 import Link from "next/link";
 import DateFormatter from "./date-formatter";
@@ -14,13 +13,7 @@ type Props = {
   slug: string;
 };
 
-export function HeroPost({
-  title,
-  coverImage,
-  date,
-  excerpt,
-  slug,
-}: Props) {
+export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
   const [isClient, setIsClient] = useState(false);
   const [truncatedTitle, setTruncatedTitle] = useState(title);
   const [truncatedExcerpt, setTruncatedExcerpt] = useState(excerpt);
@@ -36,7 +29,10 @@ export function HeroPost({
 
     // Adjust the length of the excerpt based on a character limit
     const maxExcerptLength = 300; // Set your base max length for the excerpt
-    const truncated = excerpt.length > maxExcerptLength ? excerpt.slice(0, maxExcerptLength) + "..." : excerpt;
+    const truncated =
+      excerpt.length > maxExcerptLength
+        ? excerpt.slice(0, maxExcerptLength) + "..."
+        : excerpt;
 
     setTruncatedExcerpt(truncated);
   }, [title, excerpt]);
@@ -44,12 +40,23 @@ export function HeroPost({
   const content = (
     <section className="card mb-8 md:mb-12 h-full">
       <div className="mb-8 md:mb-16">
-        <CoverImage title={title} src={coverImage} slug={slug} className="w-full object-cover rounded-md" priority={true}/>
+        <CoverImage
+          title={title}
+          src={coverImage}
+          slug={slug}
+          className="w-full object-cover rounded-md"
+          priority={true}
+        />
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
-          <h3 className="mb-4 text-4xl lg:text-5xl leading-tight min-h-[4rem]">{truncatedTitle}</h3> {/* Set min-height */}
-          <div className="mb-4 md:mb-0 text-lg min-h-[1.5rem]"> {/* Set min-height */}
+          <h3 className="mb-4 text-4xl lg:text-5xl leading-tight min-h-[4rem]">
+            {truncatedTitle}
+          </h3>{" "}
+          {/* Set min-height */}
+          <div className="mb-4 md:mb-0 text-lg min-h-[1.5rem]">
+            {" "}
+            {/* Set min-height */}
             <DateFormatter dateString={date} />
           </div>
         </div>
@@ -61,11 +68,7 @@ export function HeroPost({
   );
 
   if (isClient) {
-    return (
-      <Link href={`/posts/${slug}`}>
-        {content}
-      </Link>
-    );
+    return <Link href={`/posts/${slug}`}>{content}</Link>;
   }
 
   return content;

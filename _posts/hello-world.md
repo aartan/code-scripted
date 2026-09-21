@@ -30,14 +30,14 @@ Static generation is especially useful for pages that don’t require real-time 
 Implementing static generation in Next.js is straightforward. You can use the `getStaticProps` function to fetch data at build time and generate static pages based on that data. Here's an example:
 
 ```javascript
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 export default function Post({ post }) {
-  const router = useRouter()
+  const router = useRouter();
 
   // If the page is still being generated, show a loading state
   if (router.isFallback) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
@@ -45,33 +45,34 @@ export default function Post({ post }) {
       <h1>{post.title}</h1>
       <p>{post.content}</p>
     </div>
-  )
+  );
 }
 
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch('https://example.com/posts')
-  const posts = await res.json()
+  const res = await fetch("https://example.com/posts");
+  const posts = await res.json();
 
   // Get the paths we want to pre-render based on posts
   const paths = posts.map((post) => ({
     params: { id: post.id },
-  }))
+  }));
 
   // We'll pre-render only these paths at build time.
   // { fallback: true } means other routes should render at runtime.
-  return { paths, fallback: true }
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
   // Fetch data for the blog post using the id
-  const res = await fetch(`https://example.com/posts/${params.id}`)
-  const post = await res.json()
+  const res = await fetch(`https://example.com/posts/${params.id}`);
+  const post = await res.json();
 
   // Pass post data to the page via props
-  return { props: { post } }
+  return { props: { post } };
 }
 ```
+
 In this example, getStaticPaths is used to specify the dynamic routes to be pre-rendered, while getStaticProps fetches the necessary data at build time to generate the static pages.
 
 ## Conclusion

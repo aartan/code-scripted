@@ -39,33 +39,36 @@ One way to implement dark mode is by using CSS variables to define your color th
   --text-color: #ffffff;
 }
 ```
+
 In your component, you can toggle the dark mode class based on user preference:
 
 ```javascript
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function HomePage() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className={darkMode ? 'dark-mode' : ''}>
-      <button onClick={() => setDarkMode(!darkMode)}>
-        Toggle Dark Mode
-      </button>
+    <div className={darkMode ? "dark-mode" : ""}>
+      <button onClick={() => setDarkMode(!darkMode)}>Toggle Dark Mode</button>
       <h1>Welcome to My Site</h1>
     </div>
-  )
+  );
 }
 ```
+
 Using JavaScript to Detect User Preference
 You can also detect the user’s system preference for dark mode using JavaScript:
 
 ```javascript
 useEffect(() => {
-  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  setDarkMode(prefersDarkMode)
-}, [])
+  const prefersDarkMode = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+  setDarkMode(prefersDarkMode);
+}, []);
 ```
+
 This code automatically applies the dark mode based on the user’s system settings.
 
 ## Conclusion
