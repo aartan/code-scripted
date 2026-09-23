@@ -6,8 +6,8 @@ interface SectionRefs {
 }
 
 export default function useFullPageScroll(
-  initialSection: string,
-  sectionRefs: SectionRefs,
+    initialSection: string,
+    sectionRefs: SectionRefs,
 ) {
   const [activeSection, setActiveSection] = useState(initialSection);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -53,7 +53,7 @@ export default function useFullPageScroll(
     scrollAccumulator.current = 0;
   }, [activeSection]);
 
-  // Prevent default scroll behavior and handle wheel events with accumulator and threshold
+  // Handle wheel events globally instead of just on the container
   useEffect(() => {
     const preventScroll = (e: WheelEvent) => {
       e.preventDefault();
@@ -97,27 +97,17 @@ export default function useFullPageScroll(
       e.preventDefault();
     };
 
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("wheel", preventScroll, { passive: false });
-      window.addEventListener("scroll", preventDefaultScroll, {
-        passive: false,
-      });
-      window.addEventListener("touchmove", preventDefaultScroll, {
-        passive: false,
-      });
-    }
+    // Attach to window instead of container to capture all scroll events
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("scroll", preventDefaultScroll, { passive: false });
 
     return () => {
-      if (container) {
-        container.removeEventListener("wheel", preventScroll);
-        window.removeEventListener("scroll", preventDefaultScroll);
-        window.removeEventListener("touchmove", preventDefaultScroll);
-      }
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("scroll", preventDefaultScroll);
     };
   }, [activeSection, isTransitioning, sectionRefs]);
 
-  // Handle touch events for mobile swipe with increased sensitivity threshold
+  // Handle touch events globally for mobile swipe
   useEffect(() => {
     let touchStartY = 0;
 
@@ -159,21 +149,13 @@ export default function useFullPageScroll(
       }
     };
 
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("touchstart", handleTouchStart, {
-        passive: true,
-      });
-      container.addEventListener("touchend", handleTouchEnd, {
-        passive: false,
-      });
-    }
+    // Attach touch events to window instead of just the container
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: false });
 
     return () => {
-      if (container) {
-        container.removeEventListener("touchstart", handleTouchStart);
-        container.removeEventListener("touchend", handleTouchEnd);
-      }
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [activeSection, isTransitioning, sectionRefs]);
 
@@ -190,16 +172,16 @@ export default function useFullPageScroll(
       const currentIndex = sections.indexOf(activeSection);
 
       if (
-        (e.key === "ArrowDown" || e.key === "PageDown") &&
-        currentIndex < sections.length - 1
+          (e.key === "ArrowDown" || e.key === "PageDown") &&
+          currentIndex < sections.length - 1
       ) {
         lastScrollTime.current = now;
         setScrollDirection("down");
         scrollToSection(sections[currentIndex + 1]);
         e.preventDefault();
       } else if (
-        (e.key === "ArrowUp" || e.key === "PageUp") &&
-        currentIndex > 0
+          (e.key === "ArrowUp" || e.key === "PageUp") &&
+          currentIndex > 0
       ) {
         lastScrollTime.current = now;
         setScrollDirection("up");
