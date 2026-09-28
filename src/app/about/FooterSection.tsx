@@ -55,8 +55,7 @@ export default function FooterSection({
           <span>Stay Connected</span>
           <span>.</span>
           <span
-            className="absolute -bottom-2 left-0 w-0 h-1 bg-black dark:bg-white dark:bg-opacity-30 transition-all duration-300
-                                    group-hover:w-full lg:group-hover:w-3/4 opacity-0 group-hover:opacity-30"
+            className="absolute -bottom-2 left-0 w-0 h-1 bg-black dark:bg-white dark:bg-opacity-30 transition-all duration-300"
           ></span>
         </h3>
 
