@@ -187,7 +187,7 @@ export default function FooterSection({
               <line x1="8" y1="21" x2="16" y2="21"></line>
               <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            CodeScripted
+            About
           </span>
           <span
             className={`absolute bottom-0 left-0 h-1 bg-white opacity-30 transition-all duration-500 ease-out 
