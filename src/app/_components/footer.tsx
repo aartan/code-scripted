@@ -13,15 +13,6 @@ export function Footer() {
     author: false,
   });
 
-  // Handle hover state for interactive elements
-  const handleMouseEnter = (key: string) => {
-    setHoverStates((prev) => ({ ...prev, [key]: true }));
-  };
-
-  const handleMouseLeave = (key: string) => {
-    setHoverStates((prev) => ({ ...prev, [key]: false }));
-  };
-
   // Handler for internal navigation links
   const handleInternalLink = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -55,8 +46,6 @@ export function Footer() {
               target="_blank"
               className="flex items-center justify-center w-12 h-12 rounded-full bg-black text-white
                                     hover:bg-gray-900 transition-all duration-300 transform hover:scale-110"
-              onMouseEnter={() => handleMouseEnter("twitter")}
-              onMouseLeave={() => handleMouseLeave("twitter")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +66,6 @@ export function Footer() {
               target="_blank"
               className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white
                                     hover:bg-blue-700 transition-all duration-300 transform hover:scale-110"
-              onMouseEnter={() => handleMouseEnter("linkedin")}
-              onMouseLeave={() => handleMouseLeave("linkedin")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -127,8 +114,6 @@ export function Footer() {
           className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
                              flex items-center justify-center h-16 transition-all duration-300
                              hover:opacity-70 border-black`}
-          onMouseEnter={() => handleMouseEnter("home")}
-          onMouseLeave={() => handleMouseLeave("home")}
         >
           <span className="relative z-10 flex items-center">
             <svg
@@ -157,8 +142,6 @@ export function Footer() {
           className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
                              flex items-center justify-center h-16 transition-all duration-300
                              hover:opacity-70`}
-          onMouseEnter={() => handleMouseEnter("codescripted")}
-          onMouseLeave={() => handleMouseLeave("codescripted")}
         >
           <span className="relative z-10 flex items-center">
             <svg
@@ -189,8 +172,6 @@ export function Footer() {
           className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
                              flex items-center justify-center h-16 transition-all duration-300
                              hover:opacity-70`}
-          onMouseEnter={() => handleMouseEnter("author")}
-          onMouseLeave={() => handleMouseLeave("author")}
         >
           <span className="relative z-10 flex items-center">
             <svg
@@ -218,8 +199,6 @@ export function Footer() {
           className={`relative group overflow-hidden rounded-md bg-black text-white font-bold 
                              flex items-center justify-center h-16 transition-all duration-300
                              hover:opacity-70`}
-          onMouseEnter={() => handleMouseEnter("contact")}
-          onMouseLeave={() => handleMouseLeave("contact")}
         >
           <span className="relative z-10 flex items-center">
             <svg
