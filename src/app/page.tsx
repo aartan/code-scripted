@@ -10,13 +10,15 @@ import { getAllPosts } from "@/lib/api";
 import { SearchForm } from "./_components/searchform";
 import ClientPageWrapper from "./_components/client-page-wrapper";
 
-export default function Index({
+export default async function Index({
   searchParams,
 }: {
   searchParams: { page?: string; query?: string };
 }) {
-  const page = parseInt(searchParams.page || "1", 10) || 1;
-  const searchQuery = searchParams.query || "";
+  // Use Promise.resolve() to ensure searchParams is properly awaited
+  const resolvedParams = await Promise.resolve(searchParams);
+  const page = parseInt(resolvedParams.page || "1", 10) || 1;
+  const searchQuery = resolvedParams.query || "";
 
   // This runs on the server
   const { posts, totalPosts } = getAllPosts({

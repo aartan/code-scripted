@@ -1,5 +1,4 @@
 "use client";
-
 import CoverImage from "@/app/_components/cover-image";
 import Link from "next/link";
 import DateFormatter from "./date-formatter";
@@ -20,31 +19,29 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
 
   useEffect(() => {
     setIsClient(true);
-
     // Limit title to a certain number of characters
-    const maxTitleLength = 60; // Set the maximum number of characters allowed for the title
+    const maxTitleLength = 60;
     if (title.length > maxTitleLength) {
       setTruncatedTitle(title.slice(0, maxTitleLength) + "...");
     }
-
     // Adjust the length of the excerpt based on a character limit
-    const maxExcerptLength = 300; // Set your base max length for the excerpt
+    const maxExcerptLength = 300;
     const truncated =
       excerpt.length > maxExcerptLength
         ? excerpt.slice(0, maxExcerptLength) + "..."
         : excerpt;
-
     setTruncatedExcerpt(truncated);
   }, [title, excerpt]);
 
-  const content = (
+  // The main content section
+  const sectionContent = (
     <section className="card mb-8 md:mb-12 h-full">
       <div className="mb-8 md:mb-16">
+        {/* Render the cover image without any link functionality */}
         <CoverImage
           title={title}
           src={coverImage}
-          slug={slug}
-          className="w-full object-cover rounded-md"
+          className="w-full object-cover rounded-md hover:shadow-lg transition-shadow duration-200"
           priority={true}
         />
       </div>
@@ -52,11 +49,8 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
         <div>
           <h3 className="mb-4 text-4xl lg:text-5xl leading-tight min-h-[4rem]">
             {truncatedTitle}
-          </h3>{" "}
-          {/* Set min-height */}
+          </h3>
           <div className="mb-4 md:mb-0 text-lg min-h-[1.5rem]">
-            {" "}
-            {/* Set min-height */}
             <DateFormatter dateString={date} />
           </div>
         </div>
@@ -67,9 +61,10 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
     </section>
   );
 
+  // Only render the Link wrapper if we're on the client side
   if (isClient) {
-    return <Link href={`/posts/${slug}`}>{content}</Link>;
+    return <Link href={`/posts/${slug}`}>{sectionContent}</Link>;
   }
 
-  return content;
+  return sectionContent;
 }

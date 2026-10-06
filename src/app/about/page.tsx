@@ -6,7 +6,7 @@ import AboutPageContent from "./AboutPageContent";
 import Loading from "./loading";
 
 export const metadata = {
-  title: "About CodeScripted",
+  title: "About",
   description:
     "Learn more about CodeScripted, a blog dedicated to software development and technology.",
 };

@@ -6,8 +6,8 @@ interface SectionRefs {
 }
 
 export default function useFullPageScroll(
-    initialSection: string,
-    sectionRefs: SectionRefs,
+  initialSection: string,
+  sectionRefs: SectionRefs,
 ) {
   const [activeSection, setActiveSection] = useState(initialSection);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -172,16 +172,16 @@ export default function useFullPageScroll(
       const currentIndex = sections.indexOf(activeSection);
 
       if (
-          (e.key === "ArrowDown" || e.key === "PageDown") &&
-          currentIndex < sections.length - 1
+        (e.key === "ArrowDown" || e.key === "PageDown") &&
+        currentIndex < sections.length - 1
       ) {
         lastScrollTime.current = now;
         setScrollDirection("down");
         scrollToSection(sections[currentIndex + 1]);
         e.preventDefault();
       } else if (
-          (e.key === "ArrowUp" || e.key === "PageUp") &&
-          currentIndex > 0
+        (e.key === "ArrowUp" || e.key === "PageUp") &&
+        currentIndex > 0
       ) {
         lastScrollTime.current = now;
         setScrollDirection("up");

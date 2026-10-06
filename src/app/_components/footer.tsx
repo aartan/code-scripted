@@ -4,7 +4,7 @@ import Container from "@/app/_components/container";
 
 export function Footer() {
   const sectionRef = useRef(null);
-  const [hoverStates, setHoverStates] = useState({
+  const [hoverStates] = useState({
     home: false,
     contact: false,
     twitter: false,
@@ -33,9 +33,7 @@ export function Footer() {
         >
           <span>Stay Connected</span>
           <span>.</span>
-          <span
-            className="absolute -bottom-2 left-0 w-0 h-1 bg-black dark:bg-white dark:bg-opacity-30 transition-all duration-300"
-          ></span>
+          <span className="absolute -bottom-2 left-0 w-0 h-1 bg-black dark:bg-white dark:bg-opacity-30 transition-all duration-300"></span>
         </h3>
 
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">

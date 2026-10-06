@@ -32,11 +32,11 @@ export default function DesktopView() {
 
   // Use our custom hook for fullpage scrolling
   const { activeSection, isTransitioning, containerRef, scrollToSection } =
-      useFullPageScroll("intro", {
-        intro: introRef,
-        author: authorRef,
-        footer: footerRef,
-      });
+    useFullPageScroll("intro", {
+      intro: introRef,
+      author: authorRef,
+      footer: footerRef,
+    });
 
   // Load visited sections from localStorage after component mounts (client-side only)
   useEffect(() => {
@@ -133,57 +133,57 @@ export default function DesktopView() {
   }, []);
 
   return (
-      <div
-          ref={containerRef}
-          className="h-screen w-full overflow-hidden relative"
-          style={{ touchAction: "none" }}
-      >
-        {/* Side navigation dots */}
-        <NavigationDots
-            sections={sections}
-            activeSection={activeSection}
-            onSectionChange={handleScrollToSection}
-            isTransitioning={isTransitioning}
+    <div
+      ref={containerRef}
+      className="h-screen w-full overflow-hidden relative"
+      style={{ touchAction: "none" }}
+    >
+      {/* Side navigation dots */}
+      <NavigationDots
+        sections={sections}
+        activeSection={activeSection}
+        onSectionChange={handleScrollToSection}
+        isTransitioning={isTransitioning}
+      />
+
+      {/* Sections Container with transition effect */}
+      <div className="relative h-full w-full">
+        {/* Introduction Section */}
+        <IntroSection
+          sectionRef={introRef}
+          isMobile={false}
+          isActive={activeSection === "intro"}
+          onReadMore={
+            !isLoading && !visitedSections.author
+              ? () => handleScrollToSection("author")
+              : undefined
+          }
+          isTransitioning={isTransitioning}
         />
 
-        {/* Sections Container with transition effect */}
-        <div className="relative h-full w-full">
-          {/* Introduction Section */}
-          <IntroSection
-              sectionRef={introRef}
-              isMobile={false}
-              isActive={activeSection === "intro"}
-              onReadMore={
-                !isLoading && !visitedSections.author
-                    ? () => handleScrollToSection("author")
-                    : undefined
-              }
-              isTransitioning={isTransitioning}
-          />
+        {/* Author Section */}
+        <AuthorSection
+          sectionRef={authorRef}
+          isMobile={false}
+          isActive={activeSection === "author"}
+          onGoToFooter={
+            !isLoading && !visitedSections.footer
+              ? () => handleScrollToSection("footer")
+              : undefined
+          }
+          isTransitioning={isTransitioning}
+          previousSection={previousSection}
+        />
 
-          {/* Author Section */}
-          <AuthorSection
-              sectionRef={authorRef}
-              isMobile={false}
-              isActive={activeSection === "author"}
-              onGoToFooter={
-                !isLoading && !visitedSections.footer
-                    ? () => handleScrollToSection("footer")
-                    : undefined
-              }
-              isTransitioning={isTransitioning}
-              previousSection={previousSection}
-          />
-
-          {/* Footer Section - pass the navigation handler */}
-          <FooterSection
-              sectionRef={footerRef}
-              isMobile={false}
-              isActive={activeSection === "footer"}
-              isTransitioning={isTransitioning}
-              onNavigate={handleNavigation}
-          />
-        </div>
+        {/* Footer Section - pass the navigation handler */}
+        <FooterSection
+          sectionRef={footerRef}
+          isMobile={false}
+          isActive={activeSection === "footer"}
+          isTransitioning={isTransitioning}
+          onNavigate={handleNavigation}
+        />
       </div>
+    </div>
   );
 }

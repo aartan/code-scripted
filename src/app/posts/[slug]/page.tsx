@@ -16,7 +16,9 @@ type Params = {
 };
 
 export default async function Post({ params }: Params) {
-  const post: Post | null = getPostBySlug(params.slug);
+  // Await params before accessing its properties
+  const resolvedParams = await Promise.resolve(params);
+  const post: Post | null = getPostBySlug(resolvedParams.slug);
 
   if (!post) {
     return notFound();
@@ -43,8 +45,10 @@ export default async function Post({ params }: Params) {
   );
 }
 
-export function generateMetadata({ params }: Params): Metadata {
-  const post: Post | null = getPostBySlug(params.slug);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  // Await params before accessing its properties
+  const resolvedParams = await Promise.resolve(params);
+  const post: Post | null = getPostBySlug(resolvedParams.slug);
 
   if (!post) {
     return notFound();
