@@ -13,12 +13,15 @@ import ClientPageWrapper from "./_components/client-page-wrapper";
 export default async function Index({
   searchParams,
 }: {
-  searchParams: { page?: string; query?: string };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  // Use Promise.resolve() to ensure searchParams is properly awaited
-  const resolvedParams = await Promise.resolve(searchParams);
-  const page = parseInt(resolvedParams.page || "1", 10) || 1;
-  const searchQuery = resolvedParams.query || "";
+  // Await the searchParams promise
+  const params = await searchParams;
+
+  // Now we can safely access the resolved parameters
+  const pageStr = params.page as string | undefined;
+  const page = parseInt(pageStr || "1", 10) || 1;
+  const searchQuery = (params.query as string) || "";
 
   // This runs on the server
   const { posts, totalPosts } = getAllPosts({

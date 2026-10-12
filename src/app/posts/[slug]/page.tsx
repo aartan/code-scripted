@@ -10,15 +10,21 @@ import PostClientWrapper from "@/app/_components/post-client-wrapper";
 import type { Post } from "@/interfaces/post";
 
 type Params = {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export default async function Post({ params }: Params) {
-  // Await params before accessing its properties
-  const resolvedParams = await Promise.resolve(params);
-  const post: Post | null = getPostBySlug(resolvedParams.slug);
+  // Await the params promise
+  const resolvedParams = await params;
+
+  // Access the slug from the resolved params
+  const slug = resolvedParams.slug as string;
+
+  if (!slug) {
+    return notFound();
+  }
+
+  const post: Post | null = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
@@ -46,9 +52,17 @@ export default async function Post({ params }: Params) {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  // Await params before accessing its properties
-  const resolvedParams = await Promise.resolve(params);
-  const post: Post | null = getPostBySlug(resolvedParams.slug);
+  // Await the params promise
+  const resolvedParams = await params;
+
+  // Access the slug from the resolved params
+  const slug = resolvedParams.slug as string;
+
+  if (!slug) {
+    return notFound();
+  }
+
+  const post: Post | null = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
