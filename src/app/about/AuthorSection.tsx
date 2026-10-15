@@ -56,15 +56,14 @@ export default function AuthorSection({
           problems using code and building things that make a difference.
           Throughout my career, I've had the privilege of working with some
           outstanding teams and these experiences have allowed me to sharpen my
-          expertise in web development.
+          skills in web development.
         </p>
 
         <p className="text-base sm:text-lg leading-relaxed mb-4">
           I've spent a lot of time in the trenches, tackling complex problems
-          and crafting solutions that make a real difference. Through
-          CodeScripted, I'm excited to share what I've learned, offer insights,
-          and dive deep into the technologies and practices that drive our
-          industry forward.
+          and crafting solutions that make a real difference. I'm excited to
+          share what I've learned, offer my thoughts, and dive deep into the
+          technologies and practices that drive our industry forward.
         </p>
 
         <p className="text-base sm:text-lg leading-relaxed mb-4">

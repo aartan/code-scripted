@@ -46,17 +46,18 @@ export default function IntroSection({
       </div>
       <div className={`w-full ${isMobile ? "" : "md:w-3/5"}`}>
         <p className="text-base sm:text-lg leading-relaxed mb-4">
-          This blog is dedicated to exploring the latest trends, tools, and
-          techniques in software development and technology. Whether you're a
-          seasoned developer or just starting out, you'll find valuable insights
-          and tutorials that will help you level up your coding skills.
+          Welcome to CodeScripted — a space where we dive into the ever-evolving
+          world of software development and tech. From hands-on tutorials to
+          deep dives into emerging tools and workflows, this blog is built for
+          developers who are always learning, experimenting, and building.
         </p>
 
         <p className="text-base sm:text-lg leading-relaxed mb-4">
-          Here at CodeScripted, we believe in the power of code to solve
-          real-world problems and create amazing applications. My mission is to
-          provide high- quality, practical content that developers can use in
-          their day-to-day work.
+          Whether you’re writing your first lines of code or leading complex
+          projects, you’ll find practical insights designed to support
+          real-world development. At CodeScripted, the goal is simple: share
+          clear, useful content that helps you write better code and build
+          better software.
         </p>
       </div>
     </>
