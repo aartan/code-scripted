@@ -8,20 +8,16 @@ export default function PostLoading() {
       <Container>
         <Header />
         <article className="mb-32">
-          {/* Post header with title, date and cover image */}
+          {/* Title and cover image placeholder */}
           <div className="mb-8 md:mb-16 sm:mx-0">
-            {/* Cover image placeholder */}
+            <div className="w-full aspect-[16/1] bg-gray-200 rounded-md animate-pulse mb-8" />
+
             <div className="w-full aspect-[2/1] bg-gray-200 rounded-md animate-pulse" />
           </div>
-
-          {/* Post title and date */}
+          {/* Post date */}
           <div className="max-w-2xl mx-auto">
             <div className="mb-6 text-lg">
               <div className="w-32 h-4 bg-gray-200 rounded-md animate-pulse" />
-            </div>
-            <div className="mb-12">
-              <div className="w-full h-12 bg-gray-200 rounded-md animate-pulse mb-4" />
-              <div className="w-4/5 h-12 bg-gray-200 rounded-md animate-pulse" />
             </div>
           </div>
 
@@ -33,7 +29,6 @@ export default function PostLoading() {
                 <div className="w-full h-4 bg-gray-200 rounded-md animate-pulse mb-2" />
                 <div className="w-full h-4 bg-gray-200 rounded-md animate-pulse mb-2" />
                 <div className="w-full h-4 bg-gray-200 rounded-md animate-pulse mb-2" />
-                <div className="w-4/5 h-4 bg-gray-200 rounded-md animate-pulse mb-2" />
                 <div className="w-3/5 h-4 bg-gray-200 rounded-md animate-pulse" />
               </div>
             ))}

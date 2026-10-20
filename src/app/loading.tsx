@@ -26,13 +26,11 @@ export default function Loading() {
           </div>
 
           {/* Hero post */}
-          <div className="mb-16 pb-10 border-b">
+          <div className="mb-10">
             <div className="mb-6">
               <div className="w-full aspect-[21/9] bg-gray-200 rounded-md animate-pulse" />
             </div>
-            <div>
-              <div className="w-4/5 h-10 bg-gray-200 rounded-md mb-3 animate-pulse" />
-              <div className="w-32 h-4 bg-gray-200 rounded-md mb-6 animate-pulse" />
+            <div flex-row>
               <div className="w-full h-24 bg-gray-200 rounded-md animate-pulse" />
             </div>
           </div>
