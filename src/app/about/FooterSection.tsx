@@ -249,7 +249,7 @@ export default function FooterSection({
   return (
     <footer
       ref={sectionRef}
-      className={`border-t fixed bottom-0 left-0 right-0 w-full
+      className={`border-t fixed bottom-0 py-3 left-0 right-0 w-full
                 bg-neutral-50 border-neutral-200 dark:bg-slate-800
                 transition-all duration-700 ease-in-out
                 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}

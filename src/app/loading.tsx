@@ -30,9 +30,7 @@ export default function Loading() {
             <div className="mb-6">
               <div className="w-full aspect-[21/9] bg-gray-200 rounded-md animate-pulse" />
             </div>
-            <div flex-row>
-              <div className="w-full h-24 bg-gray-200 rounded-md animate-pulse" />
-            </div>
+            <div className="w-full h-24 bg-gray-200 rounded-md animate-pulse" />
           </div>
 
           {/* More Stories heading */}
